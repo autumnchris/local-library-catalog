@@ -1,0 +1,29 @@
+{
+  "name": "local-library-catalog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon app",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autumnchris/local-library-catalog.git"
+  },
+  "author": "autumnchris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/autumnchris/local-library-catalog/issues"
+  },
+  "homepage": "https://github.com/autumnchris/local-library-catalog#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
