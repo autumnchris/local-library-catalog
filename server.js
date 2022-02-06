@@ -1,9 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const indexRouter = require('./routes/index');
+const catalogRouter = require('./routes/catalog');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.set('views', `${__dirname}/views`);
+app.set('view engine', 'ejs');
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -11,5 +16,8 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 app.use(express.static(`${__dirname}/public`));
+
+app.use('/', indexRouter);
+app.use('/catalog', catalogRouter);
 
 app.listen(port, console.log(`Server is listening at port ${port}.`));
