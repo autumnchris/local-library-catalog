@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const moment = require('moment');
 
 const BookInstanceSchema = new Schema({
   book: {
@@ -26,6 +27,11 @@ const BookInstanceSchema = new Schema({
     type: Date,
     default: Date.now
   }
+});
+
+// Virtual for a formatted version of the book instance's due back date
+BookInstanceSchema.virtual('dueBackFormatted').get(function() {
+  return moment(this.dueBack).format('MM/DD/YYYY');
 });
 
 // Virtual for bookinstance's URL
