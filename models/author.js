@@ -7,16 +7,18 @@ const AuthorSchema = new Schema({
     required: [true, 'The author\'s name must be included.'],
     maxLength: [300, 'The author\'s name must be no more than 300 characters.']
   },
-    yearOfBirth: {
+    dateOfBirth: {
     type: Date
   },
-    yearOfDeath: {
+    dateOfDeath: {
     type: Date
   }
 });
 
 // Virtual for author's URL
-AuthorSchema.virtual('url').get(() => `/catalog/author/${this._id}`);
+AuthorSchema.virtual('url').get(function() {
+  return `/catalog/author/${this._id}`;
+});
 
 const Author = mongoose.model('Author', AuthorSchema);
 
