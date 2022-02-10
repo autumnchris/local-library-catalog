@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const expressLayouts = require('express-ejs-layouts');
 require('dotenv').config();
 const indexRouter = require('./routes/index');
 const catalogRouter = require('./routes/catalog');
@@ -7,6 +8,7 @@ const catalogRouter = require('./routes/catalog');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(expressLayouts);
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
 
