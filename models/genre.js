@@ -4,23 +4,8 @@ const Schema = mongoose.Schema;
 const GenreSchema = new Schema({
   name: {
     type: String,
-    enum: [
-      'Adventure',
-      'Biography',
-      'Fantasy',
-      'Fiction',
-      'Horror',
-      'Humanities & Social Sciences',
-      'LGBTQ+',
-      'Mystery',
-      'Nonfiction',
-      'Religion & Spirituality',
-      'Romance',
-      'Sci-Fi',
-      'Self-Help',
-      'Young Adult & Children\'s'
-    ],
-    required: [true, 'The genre name must be included.']
+    required: [true, 'The genre name must be included.'],
+    maxLength: [100, 'The genre name must be no more than 100 characters.']
   }
 });
 
