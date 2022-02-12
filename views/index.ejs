@@ -1,0 +1,35 @@
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+  <% } else { %>
+  <table>
+    <caption>The library has the following counts in its catalog:</caption>
+    <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Books</td>
+        <td><%= data.message.bookCount %></td>
+      </tr>
+      <tr>
+        <td>Book Copies</td>
+        <td><%= data.message.bookInstanceCount %></td>
+      </tr>
+      <tr>
+        <td>Available Book Copies</td>
+        <td><%= data.message.availableBookInstanceCount %></td>
+      </tr>
+      <tr>
+        <td>Authors</td>
+        <td><%= data.message.authorCount %></td>
+      </tr>
+      <tr>
+        <td>Genres</td>
+        <td><%= data.message.genreCount %></td>
+      </tr>
+    </tbody>
+  </table>
+<% } %>
