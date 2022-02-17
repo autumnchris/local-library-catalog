@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 require('dotenv').config();
@@ -11,6 +12,8 @@ const port = process.env.PORT || 3000;
 app.use(expressLayouts);
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
