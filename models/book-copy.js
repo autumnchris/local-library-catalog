@@ -30,7 +30,7 @@ const BookCopySchema = new Schema({
 
 // Virtual for a formatted version of the book copy's due back date
 BookCopySchema.virtual('dueBackFormatted').get(function() {
-  return this.status === 'Loaned' && !this.dueBack ? 'Return date not specified.' : moment(this.dueBack).format('MM/DD/YYYY');
+  return this.status === 'Loaned' && !this.dueBack ? 'Return date not specified.' : moment.utc(this.dueBack).format('MM/DD/YYYY');
 });
 
 // Virtual for book copy's URL
