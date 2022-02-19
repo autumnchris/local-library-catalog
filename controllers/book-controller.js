@@ -1,26 +1,26 @@
 const Book = require('../models/book');
 const Author = require('../models/author');
 const Genre = require('../models/genre');
-const BookInstance = require('../models/book-instance');
+const BookCopy = require('../models/book-copy');
 
 exports.fetchCatalogCount = (req, res, next) => {
     Promise.all([
-        Book.countDocuments({}),
-        BookInstance.countDocuments({}),
-        BookInstance.countDocuments({ status: 'Available' }),
-        Author.countDocuments({}),
-        Genre.countDocuments({})
+        Book.countDocuments(),
+        BookCopy.countDocuments(),
+        BookCopy.countDocuments({ status: 'Available' }),
+        Author.countDocuments(),
+        Genre.countDocuments()
     ]).then(([
         bookCount,
-        bookInstanceCount,
-        availableBookInstanceCount,
+        bookCopyCount,
+        availableBookCopyCount,
         authorCount,
         genreCount 
     ]) => {
         const results = {
             bookCount,
-            bookInstanceCount,
-            availableBookInstanceCount,
+            bookCopyCount,
+            availableBookCopyCount,
             authorCount,
             genreCount 
         };
