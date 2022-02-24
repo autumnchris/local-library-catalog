@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const BookSchema = new Schema({
   title: {
     type: String,
-    required: [true, 'The book\'s title must be included.'],
-    unique: true
+    required: [true, 'The book\'s title must be included.']
   },
   author: {
     type: Schema.Types.ObjectId,
