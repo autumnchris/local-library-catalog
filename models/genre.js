@@ -5,7 +5,8 @@ const GenreSchema = new Schema({
   name: {
     type: String,
     required: [true, 'The genre name must be included.'],
-    maxLength: [100, 'The genre name must be no more than 100 characters.']
+    maxLength: [100, 'The genre name must be no more than 100 characters.'],
+    unique: true
   }
 });
 

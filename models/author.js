@@ -6,7 +6,8 @@ const AuthorSchema = new Schema({
     name: {
     type: String,
     required: [true, 'The author\'s name must be included.'],
-    maxLength: [300, 'The author\'s name must be no more than 300 characters.']
+    maxLength: [300, 'The author\'s name must be no more than 300 characters.'],
+    unique: true
   },
     dateOfBirth: {
     type: Date
