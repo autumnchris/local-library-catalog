@@ -27,6 +27,16 @@ AuthorSchema.virtual('dateOfDeathFormatted').get(function() {
   return !this.dateOfBirth && !this.dateOfDeath ? 'Unknown' : this.dateOfDeath ? moment.utc(this.dateOfDeath).format('MMMM Do, YYYY') : 'N/A';
 });
 
+// Virtual for the form input version of the author's date of birth
+AuthorSchema.virtual('dateOfBirthInput').get(function() {
+  return moment.utc(this.dateOfBirth).format('YYYY-MM-DD');
+});
+
+// Virtual for the form input version of the author's date of death
+AuthorSchema.virtual('dateOfDeathInput').get(function() {
+  return moment.utc(this.dateOfDeath).format('YYYY-MM-DD');
+});
+
 // Virtual for author's URL
 AuthorSchema.virtual('url').get(function() {
   return `/catalog/author/${this._id}`;

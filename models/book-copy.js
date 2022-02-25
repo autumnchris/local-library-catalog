@@ -33,6 +33,11 @@ BookCopySchema.virtual('dueBackFormatted').get(function() {
   return this.status === 'Loaned' && !this.dueBack ? 'Return date not specified.' : moment.utc(this.dueBack).format('MM/DD/YYYY');
 });
 
+// Virtual for the form input version of the book copy's due back date
+BookCopySchema.virtual('dueBackInput').get(function() {
+  return moment.utc(this.dueBack).format('YYYY-MM-DD');
+});
+
 // Virtual for book copy's URL
 BookCopySchema.virtual('url').get(function() {
   return `/catalog/book-copy/${this._id}`;
