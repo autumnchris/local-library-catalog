@@ -1,0 +1,29 @@
+<h2><%= page %></h2>
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %>  
+  <% if (data.message.length === 0) { %>
+    <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> There are currently no authors in the library's catalog at this time.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Born</th>
+          <th scope="col">Died</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.message.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())).forEach(author => { %>
+          <tr>
+            <td>
+              <a href="<%= author.url %>" target="_self"><%= author.name %></a>
+            </td>
+            <td><%= author.dateOfBirthFormatted %></td>
+            <td><%= author.dateOfDeathFormatted %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+<% } %>
