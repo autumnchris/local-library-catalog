@@ -1,0 +1,29 @@
+<h2><%= page %></h2>
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %> 
+  <% if (data.message.length === 0) { %>
+    <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> There are currently no books in the library's catalog at this time.</p>
+  <% } else { %>  
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.message.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
+          <tr>
+            <td>
+              <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
+            </td>
+            <td>
+              <a href="<%= book.author.url %>" target="_self"><%= book.author.name %></a>
+            </td>
+          </tr>
+        <% }) %> 
+      </tbody>
+    </table>
+  <% } %> 
+<% } %>

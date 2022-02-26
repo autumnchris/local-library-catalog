@@ -3,6 +3,7 @@ const Author = require('../models/author');
 const Genre = require('../models/genre');
 const BookCopy = require('../models/book-copy');
 
+// Displays the counts for all items in the catalog
 exports.fetchCatalogCount = (req, res, next) => {
     Promise.all([
         Book.countDocuments(),
@@ -27,5 +28,16 @@ exports.fetchCatalogCount = (req, res, next) => {
         res.render('index', { data: { success: true, message: results } });
     }).catch(err => {
         res.render('index', { data: { success: false, message: 'Unable to load the library\'s total catalog count at this time.' } });
+    });
+};
+
+// Displays list of all the books in the catalog
+exports.fetchBookList = (req, res, next) => {
+    Book.find({}, 'title author').sort({
+        title: 'asc'
+    }).populate('author').then(data => {
+        res.render('book-list', { page: 'All Books', data: { success: true, message: data } });
+    }).catch(err => {
+        res.render('book-list', { page: 'All Books', data: { success: false, message: 'Unable to load the library catalog\'s book list at this time.' } });
     });
 };
