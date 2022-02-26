@@ -7,6 +7,9 @@ router.get('/', bookController.fetchCatalogCount);
 
 // BOOK ROUTES
 
+// GET specific Book detail page
+router.get('/book/:id', bookController.fetchBookDetail);
+
 // GET list of all Book items
 router.get('/books', bookController.fetchBookList);
 

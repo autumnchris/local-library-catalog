@@ -41,3 +41,30 @@ exports.fetchBookList = (req, res, next) => {
         res.render('book-list', { page: 'All Books', data: { success: false, message: 'Unable to load the library catalog\'s book list at this time.' } });
     });
 };
+  
+  // Display details for a specific book
+  exports.fetchBookDetail = (req, res, next) => {
+      Promise.all([
+          Book.findById(req.params.id).populate('author').populate('genre'),
+          BookCopy.find({
+              book: req.params.id
+          })
+      ]).then(([
+          bookDetails,
+          bookCopiesWithBook
+      ]) => {
+          const results = {
+              bookDetails,
+              bookCopiesWithBook
+          };
+          
+          if (results.bookDetails === null) {
+              res.status(404).render('404', { page: 'Page not found' });
+          }
+          else {
+              res.render('book-detail', { page: bookDetails.title, data: { success: true, message: results } });
+          }
+      }).catch(err => {
+          res.render('book-detail', { data: { success: false, message: 'Unable to load the library catalog\'s details for this book at this time.' } });
+      });
+  };

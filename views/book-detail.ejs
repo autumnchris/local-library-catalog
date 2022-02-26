@@ -1,0 +1,38 @@
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %>  
+  <h2>Book Title: <cite><%= page %></cite></h2>
+  <section class="details-container">
+  <div class="detail-item"><strong>Author:</strong> <a href="<%= data.message.bookDetails.author.url %>" target="_self"><%= data.message.bookDetails.author.name %></a></div>
+  <div class="detail-item"><strong>Summary:</strong> <%= data.message.bookDetails.summary %></div>
+  <div class="detail-item"><strong>ISBN:</strong> <%= data.message.bookDetails.isbn %></div>
+  <% if (data.message.bookDetails.genre.length > 0) { %>
+    <div class="detail-item"><strong>Genre:</strong> <% data.message.bookDetails.genre.forEach((genre, index) => { %>
+      <a href="<%= genre.url %>" target="_self"><%= genre.name %></a><% if (index < data.message.bookDetails.genre.length - 1) { %>, <% } %>
+    <% }) %></div>
+  <% } %>
+  </section>
+  <section>
+    <div class="button-group">
+      <a class="button" href="<%= `${data.message.bookDetails.url}/delete` %>" target="_self">Delete Book</a>
+      <a class="button" href="<%= `${data.message.bookDetails.url}/update` %>" target="_self">Update Book</a>
+    </div>
+  </section>
+  <section>
+    <h3>Book Copies</h3>
+    <% if (data.message.bookCopiesWithBook.length === 0) { %>
+      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> This book currently has no book copies in the catalog.</p>
+    <% } else { %>
+      <% data.message.bookCopiesWithBook.forEach(bookCopy => { %>
+        <div class="detail-card">
+          <div class="detail-item"><strong>ID:</strong> <%= bookCopy._id %></div>
+          <div class="detail-item"><strong>Status:</strong> <span class="status <%= bookCopy.status.toLowerCase() %>"><%= bookCopy.status %></span></div>
+          <div class="detail-item"><strong>Publisher:</strong> <%= bookCopy.publisher %></div>
+          <% if (bookCopy.status === 'Loaned') { %>
+            <div class="detail-item"><strong>Due Back:</strong> <%= bookCopy.dueBackFormatted %></div>
+          <% } %>
+        </div>
+      <% }) %> 
+    <% } %>
+  </section>
+<% } %>
