@@ -16,6 +16,9 @@ router.get('/books', bookController.fetchBookList);
 
 // AUTHOR ROUTES
 
+// GET specific Author detail page
+router.get('/author/:id', authorController.fetchAuthorDetail);
+
 // GET list of all Author items
 router.get('/authors', authorController.fetchAuthorList);
 

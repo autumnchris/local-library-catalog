@@ -1,0 +1,30 @@
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %>  
+  <h2>Author: <%= page %></h2>
+  <section class="details-container">
+    <div class="detail-item"><strong>Born:</strong> <%= data.message.authorDetails.dateOfBirthFormatted %></div>
+    <div class="detail-item"><strong>Died:</strong> <%= data.message.authorDetails.dateOfDeathFormatted %></div>
+  </section>
+  <section>
+    <div class="button-group">
+      <a class="button" href="<%= `${data.message.authorDetails.url}/delete` %>" target="_self">Delete Author</a>
+      <a class="button" href="<%= `${data.message.authorDetails.url}/update` %>" target="_self">Update Author</a>
+    </div>
+  </section>
+  <section>
+    <h3>Books by this Author</h3>
+    <% if (data.message.booksWithAuthor.length === 0) { %>
+      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> This author currently has no books in the catalog.</p>
+    <% } else { %>
+      <% data.message.booksWithAuthor.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
+        <div class="detail-card">
+          <h4>
+            <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
+          </h4>
+          <p><%= book.summary %></p>
+        </div>
+      <% }) %>
+    <% } %>
+  </section>
+<% } %>
