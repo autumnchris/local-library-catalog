@@ -25,6 +25,9 @@ router.get('/authors', authorController.fetchAuthorList);
 
 // BOOK COPY ROUTES
 
+// GET specific Book Copy detail page
+router.get('/book-copy/:id', bookCopyController.fetchBookCopyDetail);
+
 // GET list of all Book Copy items
 router.get('/book-copies', bookCopyController.fetchBookCopyList);
 
