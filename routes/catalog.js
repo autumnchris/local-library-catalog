@@ -1,6 +1,7 @@
 const express = require('express');
 const bookController = require('../controllers/book-controller');
 const authorController = require('../controllers/author-controller');
+const bookCopyController = require('../controllers/book-copy-controller');
 const router = express.Router();
 
 // GET catalog count on homepage
@@ -21,5 +22,10 @@ router.get('/author/:id', authorController.fetchAuthorDetail);
 
 // GET list of all Author items
 router.get('/authors', authorController.fetchAuthorList);
+
+// BOOK COPY ROUTES
+
+// GET list of all Book Copy items
+router.get('/book-copies', bookCopyController.fetchBookCopyList);
 
 module.exports = router;

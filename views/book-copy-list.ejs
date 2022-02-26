@@ -1,0 +1,31 @@
+<h2><%= page %></h2>
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %>
+  <% if (data.message.length === 0) { %>
+    <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> There are currently no book copies in the library's catalog at this time.</p>
+  <% } else { %> 
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Book</th>
+          <th scope="col">Publisher</th>
+          <th scope="col">Status</th>
+          <th scope="col">Due Back</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.message.sort((a, b) => a.book.title.toLowerCase().localeCompare(b.book.title.toLowerCase())).forEach(bookCopy => { %>
+          <tr>
+            <td>
+              <a href="<%= bookCopy.url %>" target="_self"><cite><%= bookCopy.book.title %></cite></a>
+            </td>
+            <td><%= bookCopy.publisher %></td>
+            <td class="status <%= bookCopy.status.toLowerCase() %>"><%= bookCopy.status %></td>
+            <td><%= bookCopy.status === 'Loaned' ? bookCopy.dueBackFormatted : 'N/A' %></td>
+          </tr>
+        <% }) %> 
+      </tbody>
+    </table>
+  <% } %> 
+<% } %>
