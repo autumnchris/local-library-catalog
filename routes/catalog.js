@@ -1,6 +1,7 @@
 const express = require('express');
 const bookController = require('../controllers/book-controller');
 const authorController = require('../controllers/author-controller');
+const genreController = require('../controllers/genre-controller');
 const bookCopyController = require('../controllers/book-copy-controller');
 const router = express.Router();
 
@@ -22,6 +23,11 @@ router.get('/author/:id', authorController.fetchAuthorDetail);
 
 // GET list of all Author items
 router.get('/authors', authorController.fetchAuthorList);
+
+// GENRE ROUTES
+
+// GET list of all Genre items
+router.get('/genres', genreController.fetchGenreList);
 
 // BOOK COPY ROUTES
 
