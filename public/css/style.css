@@ -1,0 +1,104 @@
+/* BASE PAGE STYLES */
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background: transparent;
+  height: 100%;
+  letter-spacing: 1px;
+}
+
+body {
+  background: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 0%);
+  min-height: 100%;
+  -ms-scroll-chaining: none;
+  overscroll-behavior: none;
+  padding-left: 200px;
+  position: relative;
+}
+
+header {
+  padding: 30px 30px 0;
+}
+
+main {
+   padding: 30px 30px 6rem;
+}
+
+footer {
+  bottom: 0;
+  font-size: 0.8rem;
+  left: 0;
+  letter-spacing: 2px;
+  padding: 14px 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  color: #0569b3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus,
+button:focus,
+details:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  -webkit-box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
+  box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
+  outline: none;
+}
+
+/* Message styles */
+.message {
+  border-radius: 5px;
+  line-height: 1.55;
+  margin: 20px 0;
+  max-width: 800px;
+  padding: 15px 10px;
+  text-align: center;
+}
+
+.error-message {
+  background: hsl(349, 96%, 95%);
+  border: 1px solid hsl(349, 96%, 90%);
+  color: hsl(349, 96%, 26%);
+}
+
+.warning-message {
+  background: hsl(42, 100%, 95%);
+  border: 1px solid hsl(42, 100%, 90%);
+  color: hsl(42, 100%, 26%);
+}
+
+.info-message {
+  background: hsl(204deg 100% 95%);
+  border: 1px solid hsl(204deg 100% 90%);
+  color: hsl(204deg 100% 26%);
+}
