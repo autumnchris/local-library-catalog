@@ -1,0 +1,76 @@
+/* STYLES FOR PAGE'S MAIN CONTENT */
+
+/* Button styles */
+.button-group {
+  display: flex;
+  padding: 8px 0;
+}
+
+.button,
+.button:visited,
+.button:hover,
+.button:active,
+.button:focus {
+  background: hsl(206, 95%, 36%);
+  border: 0;
+  border-radius: 5px;
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  line-height: normal;
+  margin: 5px;
+  padding: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.button:hover {
+  background: hsl(206, 95%, 32%);
+  text-decoration: none;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background: hsl(0, 0%, 90%);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 200px;
+}
+
+.sidebar nav {
+  padding: 15px;
+}
+
+.sidebar nav .catalog-lists,
+.sidebar nav .catalog-create-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav .catalog-lists a,
+.sidebar nav .catalog-lists a:visited,
+.sidebar nav .catalog-lists a:hover,
+.sidebar nav .catalog-lists a:active,
+.sidebar nav .catalog-lists a:focus {
+  margin: 4px 0;
+  width: fit-content;
+}
+
+
+.sidebar nav .button,
+.sidebar nav .button:visited,
+.sidebar nav .button:hover,
+.sidebar nav .button:active,
+.sidebar nav .button:focus {
+  width: auto;
+}
+
+.sidebar nav hr {
+  border: 0;
+  border-bottom: 1px solid hsl(0, 0%, 65%);
+  width: 100%;
+}
