@@ -1,0 +1,105 @@
+/* STYLES FOR PAGE'S MAIN CONTENT */
+
+/* Button styles */
+.button-group {
+  display: flex;
+}
+
+.button,
+.button:visited,
+.button:hover,
+.button:active,
+.button:focus {
+  background: #0569b3;
+  border: 0;
+  border-radius: 5px;
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  letter-spacing: 1px;
+  line-height: normal;
+  padding: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+/* Table styles */
+table,
+th,
+td {
+  border: 1px solid hsl(0, 0%, 60%);
+  border-collapse: collapse;
+}
+
+table caption {
+  padding: 8px;
+}
+
+table th {
+  background: hsl(0, 0%, 82%);
+  border-collapse: collapse;
+  padding: 8px;
+}
+
+table td {
+  background: hsl(0, 0%, 90%);
+  border-collapse: collapse;
+  padding: 8px;
+}
+
+table .status.maintenance {
+  background: hsl(349, 96%, 95%);
+  color: hsl(349, 96%, 26%);
+}
+
+table .status.reserved,
+table .status.loaned {
+  background: hsl(42, 100%, 95%);
+  color: hsl(42, 100%, 26%);
+}
+
+table .status.available {
+  background: hsl(127deg 69% 95%);
+  color: hsl(124deg 70% 26%);
+}
+
+/* Sidebar/Navbar styles */
+.sidebar {
+  background: hsl(0, 0%, 86%);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 200px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.details-container .status.maintenance, 
+.card .status.maintenance {
+  color: hsl(349, 96%, 26%);
+}
+
+.details-container .status.reserved,
+.card .status.reserved,
+.details-container .status.loaned,
+.card .status.loaned {
+  color: hsl(42, 100%, 26%);
+}
+
+.details-container .status.available,
+.card .status.available {
+  color: hsl(124deg 70% 26%);
+}
