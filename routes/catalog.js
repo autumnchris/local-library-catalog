@@ -26,6 +26,9 @@ router.get('/authors', authorController.fetchAuthorList);
 
 // GENRE ROUTES
 
+// GET specific Genre detail page
+router.get('/genre/:id', genreController.fetchGenreDetail);
+
 // GET list of all Genre items
 router.get('/genres', genreController.fetchGenreList);
 

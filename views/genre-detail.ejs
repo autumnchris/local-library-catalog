@@ -1,0 +1,38 @@
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %>  
+  <h2>Genre: <%= page %></h2>
+  <section>
+    <div class="button-group">
+      <a class="button" href="<%= `${data.message.genreDetails.url}/delete` %>" target="_self">Delete Genre</a>
+      <a class="button" href="<%= `${data.message.genreDetails.url}/update` %>" target="_self">Edit Genre</a>
+    </div>
+  </section>
+  <section>
+    <h3>Books in this Genre</h3>
+    <% if (data.message.booksWithGenre.length === 0) { %>
+      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> This genre currently has no books in the catalog.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Book Title</th>
+            <th scope="col">Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.message.booksWithGenre.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
+            <tr>
+              <td>
+                <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
+              </td>
+              <td>
+                <a href="<%= book.author.url %>" target="_self"><%= book.author.name %></a>
+              </td>
+            </tr>
+          <% }) %> 
+        </tbody>
+      </table>
+    <% } %>
+  </section>
+<% } %>
