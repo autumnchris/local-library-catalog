@@ -31,6 +31,44 @@
   text-decoration: none;
 }
 
+/* Table styles */
+table,
+th,
+td {
+  border: 1px solid hsl(0, 0%, 60%);
+  border-collapse: collapse;
+}
+
+table caption {
+  padding: 10px;
+}
+
+table th {
+  background: hsl(0, 0%, 75%);
+  padding: 10px;
+}
+
+table td {
+  background: hsl(0, 0%, 90%);
+  padding: 10px;
+}
+
+table .status.maintenance {
+  background: hsl(349, 96%, 95%);
+  color: hsl(349, 96%, 26%);
+}
+
+table .status.reserved,
+table .status.loaned {
+  background: hsl(42, 100%, 95%);
+  color: hsl(42, 100%, 26%);
+}
+
+table .status.available {
+  background: hsl(127deg 69% 95%);
+  color: hsl(124deg 70% 26%);
+}
+
 /* Sidebar styles */
 .sidebar {
   background: hsl(0, 0%, 90%);
