@@ -1,5 +1,9 @@
 # Local Library Catalog
 
+An Express.js app that adds, deletes, edits, and displays library catalog information such as books, authors, genres, and book copies from a MongoDB database.
+
+Inspired by the [Express 105: Forms and Deployment assignment](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/express-105-forms-and-deployment) as part of the curriculum for the [NodeJS course](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs) on [The Odin Project](https://www.theodinproject.com).
+
 ---
 
 ## Built With

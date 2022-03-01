@@ -1,7 +1,7 @@
 {
   "name": "local-library-catalog",
   "version": "1.0.0",
-  "description": "",
+  "description": "An Express.js app that adds, deletes, edits, and displays library catalog information such as books, authors, genres, and book copies from a MongoDB database.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server",
