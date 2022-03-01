@@ -16,7 +16,7 @@ router.get('/book/create', bookController.fetchBookCreateForm);
 // POST created Book to database
 router.post('/book/create', bookController.createNewBook);
 
-// GET form form updating Book
+// GET form for updating Book
 router.get('/book/:id/update', bookController.fetchBookUpdateForm);
 
 // POST updated Book to database
@@ -45,6 +45,18 @@ router.get('/genre/:id', genreController.fetchGenreDetail);
 router.get('/genres', genreController.fetchGenreList);
 
 // BOOK COPY ROUTES
+
+// GET form for creating Book Copy
+router.get('/book-copy/create', bookCopyController.fetchBookCopyCreateForm);
+
+// POST created Book Copy to database
+router.post('/book-copy/create', bookCopyController.createNewBookCopy);
+
+// GET form for updating Book Copy
+router.get('/book-copy/:id/update', bookCopyController.fetchBookCopyUpdateForm);
+
+// POST updated Book Copy to database
+router.post('/book-copy/:id/update', bookCopyController.updateBookCopy);
 
 // GET specific Book Copy detail page
 router.get('/book-copy/:id', bookCopyController.fetchBookCopyDetail);
