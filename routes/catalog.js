@@ -10,6 +10,18 @@ router.get('/', bookController.fetchCatalogCount);
 
 // BOOK ROUTES
 
+// GET form for creating Book
+router.get('/book/create', bookController.fetchBookCreateForm);
+
+// POST created Book to database
+router.post('/book/create', bookController.createNewBook);
+
+// GET form form updating Book
+router.get('/book/:id/update', bookController.fetchBookUpdateForm);
+
+// POST updated Book to database
+router.post('/book/:id/update', bookController.updateBook);
+
 // GET specific Book detail page
 router.get('/book/:id', bookController.fetchBookDetail);
 
