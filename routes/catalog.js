@@ -38,6 +38,18 @@ router.get('/authors', authorController.fetchAuthorList);
 
 // GENRE ROUTES
 
+// GET form for creating Genre
+router.get('/genre/create', genreController.fetchGenreCreateForm);
+
+// POST created Genre to database
+router.post('/genre/create', genreController.createNewGenre);
+
+// GET form for updating Genre
+router.get('/genre/:id/update', genreController.fetchGenreUpdateForm);
+
+// POST updated Genre to database
+router.post('/genre/:id/update', genreController.updateGenre);
+
 // GET specific Genre detail page
 router.get('/genre/:id', genreController.fetchGenreDetail);
 
