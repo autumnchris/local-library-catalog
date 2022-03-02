@@ -64,7 +64,7 @@ exports.fetchGenreCreateForm = (req, res, next) => {
     res.render('genre-form', { page: 'Add New Genre', data: null, errorMessage: null });
 };
 
-// Handles creation of new genre
+// Handles creation of a new genre
 exports.createNewGenre = (req, res, next) => {
     const genre = new Genre({
         name: req.body.name.trim()
@@ -90,6 +90,65 @@ exports.createNewGenre = (req, res, next) => {
     }
 };
 
+// Displays delete page for a specific book
+exports.fetchGenreDeleteForm = (req, res, next) => {    
+    Promise.all([
+        Genre.findById(req.params.id),
+        Book.find({
+            genre: req.params.id
+        }).populate('author')
+    ]).then(([
+        genre,
+        booksWithGenre
+    ]) => {
+        const results = {
+            genre,
+            booksWithGenre
+        };
+  
+        if (results.genre === null) {
+            res.status(404).render('404', { page: 'Page not found' });
+        }
+        else {
+            res.render('genre-delete', { page: 'Delete Genre', data: { success: true, message: results } });
+        }
+    }).catch(err => {
+        res.render('genre-delete', { page: 'Delete Genre', data: { success: false, message: 'Unable to load the Delete Genre form at this time.' } });
+    });
+  };
+  
+  // Handles deletion of a specific genre
+  exports.deleteGenre = (req, res, next) => {
+    
+    Promise.all([
+        Genre.findById(req.body.genreID),
+        Book.find({
+            genre: req.body.genreID
+        }).populate('author')
+    ]).then(([
+        genre,
+        booksWithGenre
+    ]) => {
+        const results = {
+            genre,
+            booksWithGenre
+        };
+  
+        if (results.booksWithGenre.length > 0) {
+            res.render('genre-delete', { page: 'Delete Genre', data: { success: true, message: results } });
+        }
+        else {
+            Genre.findByIdAndRemove(req.body.genreID).then(data => {
+                res.redirect('/catalog/genres')
+            }).catch(err => {
+                res.render('genre-delete', { page: 'Delete Genre', data: { success: true, message: 'Unable to delete this genre from the catalog at this time.' } });
+            });
+        }
+    }).catch(err => {
+        res.render('genre-delete', { page: 'Delete Genre', data: { success: false, message: 'Unable to load the Delete Genre form at this time.' } });
+    });
+  };  
+
 // Displays edit genre form
 exports.fetchGenreUpdateForm = (req, res, next) => {
     Genre.findById(req.params.id).then(data => {
@@ -105,7 +164,7 @@ exports.fetchGenreUpdateForm = (req, res, next) => {
     });
 };
 
-// Handles update of specific genre
+// Handles update of a specific genre
 exports.updateGenre = (req, res, next) => {
     const genre = new Genre({
         name: req.body.name.trim(),

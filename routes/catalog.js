@@ -62,6 +62,12 @@ router.get('/genre/create', genreController.fetchGenreCreateForm);
 // POST created Genre to database
 router.post('/genre/create', genreController.createNewGenre);
 
+// GET page for deleting Genre
+router.get('/genre/:id/delete', genreController.fetchGenreDeleteForm);
+
+// POST deleted Genre to database
+router.post('/genre/:id/delete', genreController.deleteGenre);
+
 // GET form for updating Genre
 router.get('/genre/:id/update', genreController.fetchGenreUpdateForm);
 
