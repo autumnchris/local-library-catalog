@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/autumnchris/local-library-catalog/issues"
   },
-  "homepage": "https://github.com/autumnchris/local-library-catalog#readme",
+  "homepage": "https://autumnchris-library-catalog.herokuapp.com/catalog",
   "dependencies": {
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",

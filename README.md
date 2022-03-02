@@ -18,6 +18,10 @@ Inspired by the [Express 105: Forms and Deployment assignment](https://www.theod
 * [Font Awesome](https://fontawesome.com)
 * [nodemon](https://nodemon.io)
 
+## Demo
+
+View project demo at [https://autumnchris-library-catalog.herokuapp.com/catalog](https://autumnchris-library-catalog.herokuapp.com/catalog).
+
 ## Instructions
 
 After forking and cloning, navigate to the repository in your command line and install the NPM packages:
