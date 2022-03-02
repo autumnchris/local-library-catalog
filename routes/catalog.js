@@ -42,6 +42,12 @@ router.get('/author/create', authorController.fetchAuthorCreateForm);
 // POST created Author to database
 router.post('/author/create', authorController.createNewAuthor);
 
+// GET page for deleting specific Author
+router.get('/author/:id/delete', authorController.fetchAuthorDeleteForm);
+
+// POST deleted specific Author to database
+router.post('/author/:id/delete', authorController.deleteAuthor);
+
 // GET form for updating specific Author
 router.get('/author/:id/update', authorController.fetchAuthorUpdateForm);
 

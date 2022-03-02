@@ -67,7 +67,7 @@ exports.fetchAuthorCreateForm = (req, res, next) => {
     res.render('author-form', { page: 'Add New Author', data: null, errorMessage: null });
 };
 
-// Handles creation of new author
+// Handles creation of a new author
 exports.createNewAuthor = (req, res, next) => {
     const author = new Author({
         name: req.body.name.trim(),
@@ -95,6 +95,64 @@ exports.createNewAuthor = (req, res, next) => {
     }
 };
 
+// Displays delete page for a specific author
+exports.fetchAuthorDeleteForm = (req, res, next) => {
+    Promise.all([
+        Author.findById(req.params.id),
+        Book.find({
+            author: req.params.id
+        })
+    ]).then(([
+        author,
+        booksWithAuthor
+    ]) => {
+        const results = {
+            author,
+            booksWithAuthor
+        };
+  
+        if (results.author === null) {
+            res.status(404).render('404', { page: 'Page not found' });
+        }
+        else {
+            res.render('author-delete', { page: 'Delete Author', data: { success: true, message: results } });
+        }
+    }).catch(err => {
+        res.render('author-delete', { data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
+    });
+};
+
+// Handles deletion of a specific author
+exports.deleteAuthor = (req, res, next) => {
+    Promise.all([
+        Author.findById(req.body.authorID),
+        Book.find({
+            author: req.body.authorID
+        })
+    ]).then(([
+        author,
+        booksWithAuthor
+    ]) => {
+        const results = {
+            author,
+            booksWithAuthor
+        };
+  
+        if (results.booksWithAuthor.length > 0) {
+            res.render('author-delete', { page: 'Delete Author', data: { success: true, message: results } });
+        }
+        else {
+            Author.findByIdAndRemove(req.body.authorID).then(data => {
+                res.redirect('/catalog/authors');
+            }).catch(err => {
+                res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to delete this author from the catalog at this time.' } });
+            });
+        }
+    }).catch(err => {
+        res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
+    });
+  };
+
 // Displays edit author form
 exports.fetchAuthorUpdateForm = (req, res, next) => {
     Author.findById(req.params.id).then(data => {
@@ -110,7 +168,7 @@ exports.fetchAuthorUpdateForm = (req, res, next) => {
     });
 };
 
-// Handles update of specific author
+// Handles update of a specific author
 exports.updateAuthor = (req, res, next) => {
     const author = new Author({
         name: req.body.name.trim(),
