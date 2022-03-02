@@ -177,7 +177,7 @@ exports.fetchBookDeleteForm = (req, res, next) => {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-delete', { page: 'Delete Book', data: { success: true, message: results } } );
+            res.render('book-delete', { page: 'Delete Book', data: { success: true, message: results } });
         }
     }).catch(err => {
         res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
