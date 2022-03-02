@@ -75,6 +75,12 @@ textarea:focus,
   outline: none;
 }
 
+hr {
+  border: 0;
+  border-bottom: 1px solid hsl(0, 0%, 60%);
+  width: 100%;
+}
+
 /* Message styles */
 .message {
   border-radius: 5px;

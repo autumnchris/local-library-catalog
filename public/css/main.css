@@ -1,5 +1,9 @@
 /* STYLES FOR PAGE'S MAIN CONTENT */
 
+.page-hr {
+  margin-bottom: 15px;
+}
+
 /* Button styles */
 .button-group {
   display: flex;
@@ -107,8 +111,44 @@ table .status.available {
   width: auto;
 }
 
-.sidebar nav hr {
-  border: 0;
-  border-bottom: 1px solid hsl(0, 0%, 65%);
-  width: 100%;
+/* Details */
+.detail-card {
+  background: hsl(0, 0%, 90%);
+  margin: 15px 0;
+  max-width: 600px;
+  padding: 14px;
+}
+
+.detail-item {
+  padding: 4px;
+}
+
+.detail-item strong {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.details-container .status, 
+.detail-card .status {
+  padding: 4px;
+}
+
+.details-container .status.maintenance, 
+.detail-card .status.maintenance {
+  background: hsl(349, 96%, 95%);
+  color: hsl(349, 96%, 26%);
+}
+
+.details-container .status.reserved,
+.detail-card .status.reserved,
+.details-container .status.loaned,
+.detail-card .status.loaned {
+  background: hsl(42, 100%, 95%);
+  color: hsl(42, 100%, 26%);
+}
+
+.details-container .status.available,
+.card .status.available {
+  background: hsl(127deg 69% 95%);
+  color: hsl(124deg 70% 26%);
 }
