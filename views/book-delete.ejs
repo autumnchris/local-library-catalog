@@ -1,0 +1,31 @@
+<% if (!data.success) { %>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+<% } else { %>
+  <h2><%= `${page}: ${data.message.book.title}` %></h2>
+  <% if (data.message.bookCopiesWithBook.length === 0) { %>
+    <p class="message warning-message"><span class="fa fa-exclamation-triangle fa-lg fa-fw"></span> Are you sure you want to delete this book?</p>
+    <form method="post" novalidate>
+      <input type="hidden" name="bookID" value="<%= data.message.book._id %>" id="book-id" required />
+      <div class="button-group">
+        <button type="submit" class="button">Yes, Delete this book</button>
+      </div>
+    </form>
+  <% } else { %>
+    <section>
+      <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> Delete the following book copies before attempting to delete this book.</p>
+    </section>
+    <section>
+      <h3>Book Copies</h3>
+      <% data.message.bookCopiesWithBook.forEach(bookCopy => { %>
+        <div class="detail-card">
+          <div class="detail-item"><strong>ID:</strong> <%= bookCopy._id %></div>
+          <div class="detail-item"><strong>Status:</strong> <%= bookCopy.status %></div>
+          <div class="detail-item"><strong>Publisher:</strong> <%= bookCopy.publisher %></div>
+          <% if (bookCopy.status === 'Loaned') { %>
+            <div class="detail-item"><strong>Due Back:</strong> <%= bookCopy.dueBackFormatted %></div>
+          <% } %>
+        </div>
+      <% }) %>
+    </section>
+  <% } %>
+<% } %>

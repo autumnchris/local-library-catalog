@@ -16,6 +16,12 @@ router.get('/book/create', bookController.fetchBookCreateForm);
 // POST created Book to database
 router.post('/book/create', bookController.createNewBook);
 
+// GET page for deleting Book
+router.get('/book/:id/delete', bookController.fetchBookDeleteForm);
+
+// POST deleted Book to database
+router.post('/book/:id/delete', bookController.deleteBook);
+
 // GET form for updating Book
 router.get('/book/:id/update', bookController.fetchBookUpdateForm);
 

@@ -111,7 +111,7 @@ exports.fetchBookCreateForm = (req, res, next) => {
     });
 };
 
-// Handles creation of new book
+// Handles creation of a new book
 exports.createNewBook = (req, res, next) => {
     const book = new Book({
         title: req.body.title.trim(),
@@ -157,6 +157,64 @@ exports.createNewBook = (req, res, next) => {
     });
 };
 
+// Displays delete page for a specific book
+exports.fetchBookDeleteForm = (req, res, next) => {  
+    Promise.all([
+        Book.findById(req.params.id),
+        BookCopy.find({
+            book: req.params.id
+        })
+    ]).then(([
+        book,
+        bookCopiesWithBook
+    ]) => {
+        const results = {
+            book,
+            bookCopiesWithBook
+        };
+  
+        if (results.book === null) {
+            res.status(404).render('404', { page: 'Page not found' });
+        }
+        else {
+            res.render('book-delete', { page: 'Delete Book', data: { success: true, message: results } } );
+        }
+    }).catch(err => {
+        res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
+    });
+};
+  
+// Handles deletion of a specific book
+exports.deleteBook = (req, res, next) => {
+    Promise.all([
+        Book.findById(req.body.bookID),
+        BookCopy.find({
+            book: req.body.bookID
+        })
+    ]).then(([
+        book,
+        bookCopiesWithBook
+    ]) => {
+        const results = {
+            book,
+            bookCopiesWithBook
+        };
+  
+        if (results.bookCopiesWithBook.length > 0) {
+            res.render('book-delete', { page: 'Delete Book', data: { success: true, message: results } });
+        }
+        else {
+            Book.findByIdAndRemove(req.body.bookID).then(data => {
+                res.redirect('/catalog/books')
+            }).catch(err => {
+                res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to delete this book from the catalog at this time.' } });
+            });
+        }
+    }).catch(err => {
+        res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
+    });
+};
+
 // Displays edit book form
 exports.fetchBookUpdateForm = (req, res, next) => {
     Promise.all([
@@ -185,7 +243,7 @@ exports.fetchBookUpdateForm = (req, res, next) => {
     });
 };
 
-// Handles update of specific book
+// Handles update of a specific book
 exports.updateBook = (req, res, next) => {
     const book = new Book({
         title: req.body.title.trim(),
