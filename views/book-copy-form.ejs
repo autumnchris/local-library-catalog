@@ -33,7 +33,7 @@
     </div>
     <div class="form-group">
       <label for="due-back">Due Back (leave empty if Status is not set to Loaned)</label>
-      <input type="date" name="dueBack" value="<%= data.message.bookCopy && data.message.bookCopy.dueBack ? data.message.bookCopy.dueBackInput : '' %>" id="due-back" />
+      <input type="date" name="dueBack" placeholder="YYYY-MM-DD" value="<%= data.message.bookCopy && data.message.bookCopy.dueBack ? data.message.bookCopy.dueBackInput : '' %>" id="due-back" />
     </div>
     <div class="button-group">
       <button type="submit" class="button">Submit</button>
