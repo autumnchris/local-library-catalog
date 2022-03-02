@@ -30,6 +30,18 @@ router.get('/books', bookController.fetchBookList);
 
 // AUTHOR ROUTES
 
+// GET form for creating Author
+router.get('/author/create', authorController.fetchAuthorCreateForm);
+
+// POST created Author to database
+router.post('/author/create', authorController.createNewAuthor);
+
+// GET form for updating Author
+router.get('/author/:id/update', authorController.fetchAuthorUpdateForm);
+
+// POST updated Author to database
+router.post('/author/:id/update', authorController.updateAuthor);
+
 // GET specific Author detail page
 router.get('/author/:id', authorController.fetchAuthorDetail);
 
