@@ -16,16 +16,16 @@ router.get('/book/create', bookController.fetchBookCreateForm);
 // POST created Book to database
 router.post('/book/create', bookController.createNewBook);
 
-// GET page for deleting Book
+// GET page for deleting specific Book
 router.get('/book/:id/delete', bookController.fetchBookDeleteForm);
 
-// POST deleted Book to database
+// POST deleted specific Book to database
 router.post('/book/:id/delete', bookController.deleteBook);
 
-// GET form for updating Book
+// GET form for updating specific Book
 router.get('/book/:id/update', bookController.fetchBookUpdateForm);
 
-// POST updated Book to database
+// POST updated specific Book to database
 router.post('/book/:id/update', bookController.updateBook);
 
 // GET specific Book detail page
@@ -42,10 +42,10 @@ router.get('/author/create', authorController.fetchAuthorCreateForm);
 // POST created Author to database
 router.post('/author/create', authorController.createNewAuthor);
 
-// GET form for updating Author
+// GET form for updating specific Author
 router.get('/author/:id/update', authorController.fetchAuthorUpdateForm);
 
-// POST updated Author to database
+// POST updated specific Author to database
 router.post('/author/:id/update', authorController.updateAuthor);
 
 // GET specific Author detail page
@@ -62,16 +62,16 @@ router.get('/genre/create', genreController.fetchGenreCreateForm);
 // POST created Genre to database
 router.post('/genre/create', genreController.createNewGenre);
 
-// GET page for deleting Genre
+// GET page for deleting specific Genre
 router.get('/genre/:id/delete', genreController.fetchGenreDeleteForm);
 
-// POST deleted Genre to database
+// POST deleted specific Genre to database
 router.post('/genre/:id/delete', genreController.deleteGenre);
 
-// GET form for updating Genre
+// GET form for updating specific Genre
 router.get('/genre/:id/update', genreController.fetchGenreUpdateForm);
 
-// POST updated Genre to database
+// POST updated specific Genre to database
 router.post('/genre/:id/update', genreController.updateGenre);
 
 // GET specific Genre detail page
@@ -88,10 +88,10 @@ router.get('/book-copy/create', bookCopyController.fetchBookCopyCreateForm);
 // POST created Book Copy to database
 router.post('/book-copy/create', bookCopyController.createNewBookCopy);
 
-// GET form for updating Book Copy
+// GET form for updating specific Book Copy
 router.get('/book-copy/:id/update', bookCopyController.fetchBookCopyUpdateForm);
 
-// POST updated Book Copy to database
+// POST updated specific Book Copy to database
 router.post('/book-copy/:id/update', bookCopyController.updateBookCopy);
 
 // GET specific Book Copy detail page
