@@ -58,7 +58,7 @@ exports.fetchBookCopyCreateForm = (req, res, next) => {
     });
 };
 
-// Handles creation of new book copy
+// Handles creation of a new book copy
 exports.createNewBookCopy = (req, res, next) => {
     const bookCopy = new BookCopy({
         book: req.body.book,
@@ -88,6 +88,30 @@ exports.createNewBookCopy = (req, res, next) => {
     });
 };
 
+// Displays delete page for a specific book copy
+exports.fetchBookCopyDeleteForm = (req, res, next) => {
+    BookCopy.findById(req.params.id).then(data => {
+  
+        if (data === null) {
+            res.status(404).render('404', { page: 'Page not found' });
+        }
+        else {
+            res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: true, message: data } });
+        }
+    }).catch(err => {
+        res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: false, message: 'Unable to load the Delete Book Copy form at this time.' } });
+    });
+  };
+  
+  // Handles deletion of a specific book copy
+  exports.deleteBookCopy = (req, res, next) => {
+    BookCopy.findByIdAndRemove(req.body.bookCopyID).then(data => {
+        res.redirect('/catalog/book-copies');
+    }).catch(err => {
+        res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: true, message: 'Unable to delete this book copy from the catalog at this time.' } });
+    });
+  };
+
 // Displays edit book copy form
 exports.fetchBookCopyUpdateForm = (req, res, next) => {
     Promise.all([
@@ -113,7 +137,7 @@ exports.fetchBookCopyUpdateForm = (req, res, next) => {
     });
 };
 
-// Handles update of specific book copy
+// Handles update of a specific book copy
 exports.updateBookCopy = (req, res, next) => {
     const bookCopy = new BookCopy({
         book: req.body.book,

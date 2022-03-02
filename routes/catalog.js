@@ -94,6 +94,12 @@ router.get('/book-copy/create', bookCopyController.fetchBookCopyCreateForm);
 // POST created Book Copy to database
 router.post('/book-copy/create', bookCopyController.createNewBookCopy);
 
+// GET page for deleting specific Book Copy
+router.get('/book-copy/:id/delete', bookCopyController.fetchBookCopyDeleteForm);
+
+// POST deleted specific Book Copy to database
+router.post('/book-copy/:id/delete', bookCopyController.deleteBookCopy);
+
 // GET form for updating specific Book Copy
 router.get('/book-copy/:id/update', bookCopyController.fetchBookCopyUpdateForm);
 
