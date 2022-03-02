@@ -118,7 +118,7 @@ exports.fetchAuthorDeleteForm = (req, res, next) => {
             res.render('author-delete', { page: 'Delete Author', data: { success: true, message: results } });
         }
     }).catch(err => {
-        res.render('author-delete', { data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
+        res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
     });
 };
 
