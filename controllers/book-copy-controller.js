@@ -152,7 +152,7 @@ exports.updateBookCopy = (req, res, next) => {
         BookCopy.findById(req.params.id)
     ]).then(([
         books,
-        BookCopyID
+        bookCopyID
     ]) => {
         const results = {
             books,
