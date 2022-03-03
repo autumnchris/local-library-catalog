@@ -81,11 +81,11 @@ exports.fetchBookDetail = (req, res, next) => {
             bookCopiesWithBook
         };
         
-        if (results.bookDetails === null) {
+        if (bookDetails === null) {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-detail', { page: bookDetails.title, data: { success: true, message: results } });
+            res.render('book-detail', { page: { heading: 'Book Title', details: bookDetails.title }, data: { success: true, message: results } });
         }
     }).catch(err => {
         res.render('book-detail', { data: { success: false, message: 'Unable to load the library catalog\'s details for this book at this time.' } });
@@ -173,11 +173,11 @@ exports.fetchBookDeleteForm = (req, res, next) => {
             bookCopiesWithBook
         };
   
-        if (results.book === null) {
+        if (book === null) {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-delete', { page: 'Delete Book', data: { success: true, message: results } });
+            res.render('book-delete', { page: { heading: 'Delete Book', details: book.title }, data: { success: true, message: results } });
         }
     }).catch(err => {
         res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
@@ -200,14 +200,14 @@ exports.deleteBook = (req, res, next) => {
             bookCopiesWithBook
         };
   
-        if (results.bookCopiesWithBook.length > 0) {
-            res.render('book-delete', { page: 'Delete Book', data: { success: true, message: results } });
+        if (bookCopiesWithBook.length > 0) {
+            res.render('book-delete', { page: { heading: 'Delete Book', details: book.title }, data: { success: true, message: results } });
         }
         else {
             Book.findByIdAndRemove(req.body.bookID).then(data => {
                 res.redirect('/catalog/books')
             }).catch(err => {
-                res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to delete this book from the catalog at this time.' } });
+                res.render('book-delete', { page: { heading: 'Delete Book', details: book.title }, data: { success: false, message: 'Unable to delete this book from the catalog at this time.' } });
             });
         }
     }).catch(err => {
@@ -232,11 +232,11 @@ exports.fetchBookUpdateForm = (req, res, next) => {
             genres
         };
         
-        if (results.book === null) {
+        if (book === null) {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-form', { page: 'Edit Book', data: { success: true, message: results }, errorMessage: null });
+            res.render('book-form', { page: { heading: 'Edit Book', details: book.title }, data: { success: true, message: results }, errorMessage: null });
         }
     }).catch(err => {
         res.render('book-form', { page: 'Edit Book', data: { success: false, message: 'Unable to load the Edit Book form at this time.' }, errorMessage: null });
@@ -256,19 +256,22 @@ exports.updateBook = (req, res, next) => {
     
     Promise.all([
         Author.find({}, 'name'),
-        Genre.find({}, 'name')
+        Genre.find({}, 'name'),
+        Book.findById(req.params.id, 'title')
     ]).then(([
         authors,
-        genres
+        genres,
+        bookTitle
     ]) => {
         const results = {
             authors,
             genres,
+            bookTitle,
             book
         };
         
         if (validateForm(book)) {
-            res.render('book-form', { page: 'Edit Book', data: { success: true, message: results }, errorMessage: validateForm(book) });
+            res.render('book-form', { page: { heading: 'Edit Book', details: bookTitle.title }, data: { success: true, message: results }, errorMessage: validateForm(book) });
         }
         else {
             Book.findByIdAndUpdate(req.params.id, book).then(data => {
@@ -282,7 +285,7 @@ exports.updateBook = (req, res, next) => {
                 else {
                     errorMessage = 'Something went wrong. A form value might have been entered incorrectly. Please try again.';
                 }
-                res.render('book-form', { page: 'Edit Book', data: { success: true, message: results }, errorMessage });
+                res.render('book-form', { page: { heading: 'Edit Book', details: bookTitle.title }, data: { success: true, message: results }, errorMessage });
             });
         }
     }).catch(err => {

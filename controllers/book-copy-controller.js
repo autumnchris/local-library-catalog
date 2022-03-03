@@ -38,7 +38,7 @@ exports.fetchBookCopyDetail = (req, res, next) => {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-copy-detail', { page: data._id, data: { success: true, message: data } });
+            res.render('book-copy-detail', { page: { heading: 'Book Copy ID', details: data._id }, data: { success: true, message: data } });
         }
     }).catch(err => {
         res.render('book-copy-detail', { data: { success: false, message: 'Unable to load the library catalog\'s details for this book copy at this time.' } });
@@ -73,8 +73,8 @@ exports.createNewBookCopy = (req, res, next) => {
             bookCopy
         };
 
-        if (validateForm(bookCopy, req.body.dueBack)) {
-            res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: true, message: results }, errorMessage: validateForm(bookCopy, req.body.dueBack) });
+        if (validateForm(bookCopy, req.body.dueBack.trim())) {
+            res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: true, message: results }, errorMessage: validateForm(bookCopy, req.body.dueBack.trim()) });
         }
         else {
             bookCopy.save().then(data => {
@@ -96,7 +96,7 @@ exports.fetchBookCopyDeleteForm = (req, res, next) => {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: true, message: data } });
+            res.render('book-copy-delete', { page: { heading: 'Delete Book Copy', details: data._id }, data: { success: true, message: data } });
         }
     }).catch(err => {
         res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: false, message: 'Unable to load the Delete Book Copy form at this time.' } });
@@ -108,7 +108,7 @@ exports.fetchBookCopyDeleteForm = (req, res, next) => {
     BookCopy.findByIdAndRemove(req.body.bookCopyID).then(data => {
         res.redirect('/catalog/book-copies');
     }).catch(err => {
-        res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: true, message: 'Unable to delete this book copy from the catalog at this time.' } });
+        res.render('book-copy-delete', { page: { heading: 'Delete Book Copy', details: data._id }, data: { success: true, message: 'Unable to delete this book copy from the catalog at this time.' } });
     });
   };
 
@@ -126,11 +126,11 @@ exports.fetchBookCopyUpdateForm = (req, res, next) => {
             books
         };
 
-        if (results.bookCopy === null) {
+        if (bookCopy === null) {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('book-copy-form', { page: 'Edit Book Copy', data: { success: true, message: results }, errorMessage: null });
+            res.render('book-copy-form', { page: { heading: 'Edit Book Copy', details: bookCopy._id }, data: { success: true, message: results }, errorMessage: null });
         }
     }).catch(err => {
         res.render('book-copy-form', { page: 'Edit Book Copy', data: { success: false, message: 'Unable to load the Edit Book Copy form at this time.' }, errorMessage: null });
@@ -147,20 +147,27 @@ exports.updateBookCopy = (req, res, next) => {
         _id: req.params.id
     });
 
-    Book.find({}, 'title isbn').then(data => {
+    Promise.all([
+        Book.find({}, 'title isbn'),
+        BookCopy.findById(req.params.id)
+    ]).then(([
+        books,
+        BookCopyID
+    ]) => {
         const results = {
-            books: data,
+            books,
+            bookCopyID,
             bookCopy
         };
 
-        if (validateForm(bookCopy, req.body.dueBack)) {
-            res.render('book-copy-form', { page: 'Edit Book Copy', data: { success: true, message: results }, errorMessage: validateForm(bookCopy, req.body.dueBack) });
+        if (validateForm(bookCopy, req.body.dueBack.trim())) {
+            res.render('book-copy-form', { page: { heading: 'Edit Book Copy', details: bookCopyID._id }, data: { success: true, message: results }, errorMessage: validateForm(bookCopy, req.body.dueBack.trim()) });
         }
         else {
             BookCopy.findByIdAndUpdate(req.params.id, bookCopy).then(data => {
                 res.redirect(data.url);
             }).catch(err => {
-                res.render('book-copy-form', { page: 'Edit Book Copy', data: { success: true, message: results }, errorMessage: 'Something went wrong. A form value might have been entered incorrectly. Please try again.' });
+                res.render('book-copy-form', { page: { heading: 'Edit Book Copy', details: bookCopyID._id }, data: { success: true, message: results }, errorMessage: 'Something went wrong. A form value might have been entered incorrectly. Please try again.' });
             });
         }
     }).catch(err => {

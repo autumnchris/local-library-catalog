@@ -1,7 +1,7 @@
 <% if (!data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
-<% } else { %>  
-  <h2><%= page %></h2>
+<% } else { %>
+  <h2><%- page.heading && page.details ? `${page.heading}: <cite>${page.details}</cite>` : page %></h2>
   <form method="post" novalidate>
     <div class="form-group">
       <label for="title">Title <abbr class="required-field" title="The book title is required." aria-label="required">*</abbr></label>

@@ -1,7 +1,7 @@
 <% if (!data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
 <% } else { %>  
-  <h2>Book Copy ID: <%= page %></h2>
+  <h2><%= page.heading %>: <%= page.details %></h2>
   <section class="details-container">
     <div class="detail-item"><strong>Title:</strong> <a href="<%= data.message.book.url %>" target="_self"><cite><%= data.message.book.title %></cite></a></div>
     <div class="detail-item"><strong>Status:</strong> <span class="status <%= data.message.status.toLowerCase() %>"><%= data.message.status %></span></div>

@@ -11,13 +11,13 @@ function validateForm(formData, dateOfBirth, dateOfDeath) {
         return 'The author\'s date of birth is not in a recognized format.';
     }
     else if (validator.isAfter(dateOfBirth)) {
-        return 'The author\'s date of birth cannot be before today\'s date.';
+        return 'The author\'s date of birth cannot be set after today\'s date.';
     }
     else if (formData.dateOfDeath && !validator.isDate(dateOfDeath, { format: 'YYYY-MM-DD', strictMode: true })) {
         return 'The author\'s date of death is not in a recognized format.';
     }
     else if (validator.isAfter(dateOfDeath)) {
-        return 'The author\'s date of death cannot be before today\'s date.';
+        return 'The author\'s date of death cannot be set after today\'s date.';
     }
     else {
         return null;
@@ -51,11 +51,11 @@ exports.fetchAuthorDetail = (req, res, next) => {
             booksWithAuthor
         };
 
-        if (results.authorDetails === null) {
+        if (authorDetails === null) {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('author-detail', { page: authorDetails.name, data: { success: true, message: results } });
+            res.render('author-detail', { page: { heading: 'Author', details: authorDetails.name }, data: { success: true, message: results } });
         }
     }).catch(err => {
         res.render('author-detail', { data: { success: false, message: 'Unable to load the library catalog\'s details for this author at this time.' } });
@@ -75,8 +75,8 @@ exports.createNewAuthor = (req, res, next) => {
         dateOfDeath: req.body.dateOfDeath.trim()
     });
 
-    if (validateForm(author, req.body.dateOfBirth, req.body.dateOfDeath)) {
-        res.render('author-form', { page: 'Add New Author', data: { success: true, message: author }, errorMessage: validateForm(author, req.body.dateOfBirth, req.body.dateOfDeath) });
+    if (validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim())) {
+        res.render('author-form', { page: 'Add New Author', data: { success: true, message: author }, errorMessage: validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim()) });
     }
     else {
         author.save().then(data => {
@@ -111,11 +111,11 @@ exports.fetchAuthorDeleteForm = (req, res, next) => {
             booksWithAuthor
         };
   
-        if (results.author === null) {
+        if (author === null) {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('author-delete', { page: 'Delete Author', data: { success: true, message: results } });
+            res.render('author-delete', { page: { heading: 'Delete Author', details: author.name }, data: { success: true, message: results } });
         }
     }).catch(err => {
         res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
@@ -138,14 +138,14 @@ exports.deleteAuthor = (req, res, next) => {
             booksWithAuthor
         };
   
-        if (results.booksWithAuthor.length > 0) {
-            res.render('author-delete', { page: 'Delete Author', data: { success: true, message: results } });
+        if (booksWithAuthor.length > 0) {
+            res.render('author-delete', { page: { heading: 'Delete Author', details: author.name }, data: { success: true, message: results } });
         }
         else {
             Author.findByIdAndRemove(req.body.authorID).then(data => {
                 res.redirect('/catalog/authors');
             }).catch(err => {
-                res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to delete this author from the catalog at this time.' } });
+                res.render('author-delete', { page: { heading: 'Delete Author', details: author.name }, data: { success: false, message: 'Unable to delete this author from the catalog at this time.' } });
             });
         }
     }).catch(err => {
@@ -161,7 +161,7 @@ exports.fetchAuthorUpdateForm = (req, res, next) => {
             res.status(404).render('404', { page: 'Page not found' });
         }
         else {
-            res.render('author-form', { page: 'Edit Author', data: { success: true, message: data }, errorMessage: null });
+            res.render('author-form', { page: { heading: 'Edit Author', details: data.name }, data: { success: true, message: data }, errorMessage: null });
         }
     }).catch(err => {
         res.render('author-form', { page: 'Edit Author', data: { success: false, message: 'Unable to load the Edit Author form at this time.' }, errorMessage: null });
@@ -177,22 +177,27 @@ exports.updateAuthor = (req, res, next) => {
         _id: req.params.id
     });
 
-    if (validateForm(author, req.body.dateOfBirth, req.body.dateOfDeath)) {
-        res.render('author-form', { page: 'Edit Author', data: { success: true, message: author }, errorMessage: validateForm(author, req.body.dateOfBirth, req.body.dateOfDeath) });
-    }
-    else {
-        Author.findByIdAndUpdate(req.params.id, author).then(data => {
-            res.redirect(data.url);
-        }).catch(err => {
-            let errorMessage;
+    Author.findById(req.params.id, 'name').then(authorInfo => {
 
-            if (err.code === 11000) {
-                errorMessage = `The author, "${author.name}", already exists in the catalog.`;
-            }
-            else {
-                errorMessage = 'Something went wrong. A form value might have been entered incorrectly. Please try again.';
-            }
-            res.render('author-form', { page: 'Edit Author', data: { success: true, message: author }, errorMessage });
-        });
-    }
+        if (validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim())) {
+            res.render('author-form', { page: { heading: 'Edit Author', details: authorInfo.name }, data: { success: true, message: author }, errorMessage: validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim()) });
+        }
+        else {
+            Author.findByIdAndUpdate(req.params.id, author).then(data => {
+                res.redirect(data.url);
+            }).catch(err => {
+                let errorMessage;
+    
+                if (err.code === 11000) {
+                    errorMessage = `The author, "${author.name}", already exists in the catalog.`;
+                }
+                else {
+                    errorMessage = 'Something went wrong. A form value might have been entered incorrectly. Please try again.';
+                }
+                res.render('author-form', { page: { heading: 'Edit Author', details: authorInfo.name }, data: { success: true, message: author }, errorMessage });
+            });
+        }
+    }).catch(err => {
+        res.render('author-form', { page: 'Edit Author', data: { success: false, message: 'Unable to edit this author at this time.' }, errorMessage: null });
+    });
 };

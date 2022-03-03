@@ -1,7 +1,7 @@
 <% if (!data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
 <% } else { %>
-  <h2><%= `${page}: ${data.message.book.title}` %></h2>
+  <h2><%= page.heading %>: <cite><%= page.details %></cite></h2>
   <% if (data.message.bookCopiesWithBook.length === 0) { %>
     <p class="message warning-message"><span class="fa fa-exclamation-triangle fa-lg fa-fw"></span> Are you sure you want to delete this book?</p>
     <form method="post" novalidate>
