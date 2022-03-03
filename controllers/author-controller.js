@@ -19,6 +19,9 @@ function validateForm(formData, dateOfBirth, dateOfDeath) {
     else if (validator.isAfter(dateOfDeath)) {
         return 'The author\'s date of death cannot be set after today\'s date.';
     }
+    else if (validator.isAfter(dateOfBirth, dateOfDeath)) {
+        return 'The author\'s date of death cannot be set before the author\'s date of birth.';
+    }
     else {
         return null;
     }
