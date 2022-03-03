@@ -8,6 +8,7 @@
       <input type="hidden" name="genreID" value="<%= data.message.genre._id %>" id="genre-id" required />
       <div class="button-group">
         <button type="submit" class="button">Yes, Delete this genre</button>
+        <a class="button" href="<%= data.message.genre.url %>" target="_self">Cancel</a>
       </div>
     </form>
   <% } else { %>

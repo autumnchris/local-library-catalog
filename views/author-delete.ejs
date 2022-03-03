@@ -8,6 +8,7 @@
       <input type="hidden" name="authorID" value="<%= data.message.author._id %>" id="author-id" required />
       <div class="button-group">
         <button type="submit" class="button">Yes, Delete this author</button>
+        <a class="button" href="<%= data.message.author.url %>" target="_self">Cancel</a>
       </div>
     </form>
   <% } else { %>

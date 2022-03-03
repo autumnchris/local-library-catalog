@@ -7,6 +7,7 @@
     <input type="hidden" name="bookCopyID" value="<%= data.message._id %>" id="book-copy-id" required />
     <div class="button-group">
       <button type="submit" class="button">Yes, Delete this book copy</button>
+      <a class="button" href="<%= data.message.url %>" target="_self">Cancel</a>
     </div>
   </form>
 <% } %> 
