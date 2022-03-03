@@ -14,6 +14,7 @@ Inspired by the [Express 105: Forms and Deployment assignment](https://www.theod
 * [EJS](https://ejs.co)
 * [validator.js](https://github.com/validatorjs/validator.js)
 * [Moment.js](https://momentjs.com)
+* [dotenv](https://github.com/motdotla/dotenv)
 * [Normalize.css](https://necolas.github.io/normalize.css)
 * [Font Awesome](https://fontawesome.com)
 * [nodemon](https://nodemon.io)
