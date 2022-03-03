@@ -1,4 +1,4 @@
-<% if (!data.success) { %>
+<% if (data && !data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
 <% } else { %>
   <h2><%= page.heading && page.details ? `${page.heading}: ${page.details}` : page %></h2>
