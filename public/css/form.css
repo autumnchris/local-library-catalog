@@ -1,0 +1,163 @@
+/* STYLES FOR ADD/EDIT FORMS */
+
+form {
+  max-width: 550px;
+}
+
+input,
+select,
+textarea {
+  background: hsl(0, 0%, 100%);
+  border: 1px solid hsl(0, 0%, 60%);
+  border-radius: 0;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  padding: 8px;
+  width: 100%;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: hsl(0, 0%, 60%);
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: hsl(0, 0%, 60%);
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: hsl(0, 0%, 60%);
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: hsl(0, 0%, 60%);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: hsl(0, 0%, 60%);
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-weight: 700;
+}
+
+.form-group {
+  padding-bottom: 25px;
+}
+
+.form-group > label,
+legend {
+  display: block;
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.required-field {
+  color: #d40000;
+  cursor: help;
+}
+
+.required-field[title] {
+  text-decoration: none;
+}
+
+/* Select element styles */
+.select-wrapper {
+  background: #0569b3;
+  border-radius: 4px;
+  color: hsl(0, 0%, 100%);
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.select-wrapper select::-ms-expand {
+  display: none;
+}
+
+.select-wrapper:after {
+  content: "\f0dc";
+  cursor: pointer;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/* Checkbox input styles */
+.check-label {
+  cursor: pointer;
+  margin-bottom: 6px;
+  padding: 5px 10px 5px 30px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.checkmark {
+  background: hsl(0, 0%, 100%);
+  border: 1px solid hsl(0, 0%, 60%);
+  height: 17px;
+  left: 3px;
+  margin: 4px;
+  position: absolute;
+  top: 1px;
+  width: 17px;
+}
+
+input:checked ~ .checkmark {
+  background: #0569b3;
+  border: 1px solid #0569b3;
+}
+
+input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.check-label .checkmark:after {
+  border: 1px solid hsl(0, 0%, 100%);
+  border-width: 0 2px 2px 0;
+  content: "";
+  display: none;
+  height: 8.5px;
+  left: 4.5px;
+  position: absolute;
+  top: 1px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 4px;
+}
