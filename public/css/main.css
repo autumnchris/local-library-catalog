@@ -121,6 +121,10 @@ table .status.available {
 }
 
 /* Details */
+.details-container {
+  max-width: 700px;
+}
+
 .detail-card {
   background: hsl(0, 0%, 90%);
   margin: 15px 0;
@@ -129,7 +133,8 @@ table .status.available {
 }
 
 .detail-item {
-  padding: 4px;
+  line-height: 1.3;
+  padding: 2px;
 }
 
 .detail-item strong {
@@ -157,7 +162,7 @@ table .status.available {
 }
 
 .details-container .status.available,
-.card .status.available {
+.detail-card .status.available {
   background: hsl(127deg 69% 95%);
   color: hsl(124deg 70% 26%);
 }
