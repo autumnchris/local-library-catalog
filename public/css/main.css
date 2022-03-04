@@ -6,6 +6,8 @@
 
 /* Button styles */
 .button-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 8px 0;
 }
@@ -89,7 +91,12 @@ table .status.available {
 
 .sidebar nav .catalog-lists,
 .sidebar nav .catalog-create-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -99,6 +106,8 @@ table .status.available {
 .sidebar nav .catalog-lists a:active,
 .sidebar nav .catalog-lists a:focus {
   margin: 4px 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
