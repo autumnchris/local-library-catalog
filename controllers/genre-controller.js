@@ -6,6 +6,9 @@ function validateForm(formData) {
     if (!formData.name) {
         return 'The genre name must be included.';
     }
+    else if (formData.name.length > 100) {
+        return 'The genre name must be no more than 100 characters.';
+    }
     else {
         return null;
     }

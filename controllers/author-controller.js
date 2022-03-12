@@ -7,6 +7,9 @@ function validateForm(formData, dateOfBirth, dateOfDeath) {
     if (!formData.name) {
         return 'The author\'s name must be included.';
     }
+    else if (formData.name.length > 300) {
+        return 'The author\'s name must be no more than 300 characters.';
+    }
     else if (formData.dateOfBirth && !validator.isDate(dateOfBirth, { format: 'YYYY-MM-DD', strictMode: true })) {
         return 'The author\'s date of birth is not in a recognized format.';
     }
