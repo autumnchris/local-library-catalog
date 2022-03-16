@@ -1,15 +1,15 @@
-<% if (data && !data.success) { %>
+<% if (typeof data !== 'undefined' && !data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
 <% } else { %>
-  <h2><%= page.heading && page.details ? `${page.heading}: ${page.details}` : page %></h2>
+  <h2><%= page.details ? `${page.heading}: ${page.details}` : page.heading %></h2>
   <form method="post" novalidate>
     <div class="form-group">
       <label for="name">Genre Name <abbr class="required-field" title="The genre name is required." aria-label="required">*</abbr></label>
-      <input type="text" name="name" placeholder="e.g. Fantasy" value="<%= data ? data.message.name : '' %>" id="name" required />
+      <input type="text" name="name" placeholder="e.g. Fantasy" value="<%= typeof data !== 'undefined' ? data.message.name : '' %>" id="name" required />
     </div>
     <div class="button-group">
       <button type="submit" class="button">Submit</button>
-      <a class="button" href="<%= page.heading && page.details ? data.message.url : '/catalog' %>" target="_self">Cancel</a>
+      <a class="button" href="<%= page.details ? data.message.url : '/catalog' %>" target="_self">Cancel</a>
     </div>
   </form>
   <%- include ('./partials/form-error-message') -%>

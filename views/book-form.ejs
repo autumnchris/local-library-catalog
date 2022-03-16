@@ -1,7 +1,7 @@
 <% if (!data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
 <% } else { %>
-  <h2><%- page.heading && page.details ? `${page.heading}: <cite>${page.details}</cite>` : page %></h2>
+  <h2><%- page.details ? `${page.heading}: <cite>${page.details}</cite>` : page.heading %></h2>
   <form method="post" novalidate>
     <div class="form-group">
       <label for="title">Title <abbr class="required-field" title="The book title is required." aria-label="required">*</abbr></label>
@@ -41,7 +41,7 @@
     </div>
     <div class="button-group">
       <button type="submit" class="button">Submit</button>
-      <a class="button" href="<%= page.heading && page.details ? data.message.book.url : '/catalog' %>" target="_self">Cancel</a>
+      <a class="button" href="<%= page.details ? data.message.book.url : '/catalog' %>" target="_self">Cancel</a>
     </div>
   </form>
   <%- include ('./partials/form-error-message') -%>

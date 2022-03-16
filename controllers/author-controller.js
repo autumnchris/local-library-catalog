@@ -35,9 +35,9 @@ exports.fetchAuthorList = (req, res, next) => {
     Author.find().sort({
         name: 'asc'
     }).then(data => {
-        res.render('author-list', { page: 'All Authors', data: { success: true, message: data } });
+        res.render('author-list', { page: { heading: 'All Authors' }, data: { success: true, message: data } });
     }).catch(err => {
-        res.render('author-list', { page: 'All Authors', data: { success: false, message: 'Unable to load the library catalog\'s author list at this time.' } });
+        res.render('author-list', { page: { heading: 'All Authors' }, data: { success: false, message: 'Unable to load the library catalog\'s author list at this time.' } });
     });
 };
 
@@ -58,7 +58,7 @@ exports.fetchAuthorDetail = (req, res, next) => {
         };
 
         if (authorDetails === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('author-detail', { page: { heading: 'Author', details: authorDetails.name }, data: { success: true, message: results } });
@@ -70,7 +70,7 @@ exports.fetchAuthorDetail = (req, res, next) => {
 
 // Displays new author form
 exports.fetchAuthorCreateForm = (req, res, next) => {
-    res.render('author-form', { page: 'Add New Author', data: null, errorMessage: null });
+    res.render('author-form', { page: { heading: 'Add New Author' } });
 };
 
 // Handles creation of a new author
@@ -82,7 +82,7 @@ exports.createNewAuthor = (req, res, next) => {
     });
 
     if (validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim())) {
-        res.render('author-form', { page: 'Add New Author', data: { success: true, message: author }, errorMessage: validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim()) });
+        res.render('author-form', { page: { heading: 'Add New Author' }, data: { success: true, message: author }, errorMessage: validateForm(author, req.body.dateOfBirth.trim(), req.body.dateOfDeath.trim()) });
     }
     else {
         author.save().then(data => {
@@ -96,7 +96,7 @@ exports.createNewAuthor = (req, res, next) => {
             else {
                 errorMessage = 'Something went wrong. A form value might have been entered incorrectly. Please try again.';
             }
-            res.render('author-form', { page: 'Add New Author', data: { success: true, message: author }, errorMessage });
+            res.render('author-form', { page: { heading: 'Add New Author' }, data: { success: true, message: author }, errorMessage });
         });
     }
 };
@@ -118,13 +118,13 @@ exports.fetchAuthorDeleteForm = (req, res, next) => {
         };
   
         if (author === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('author-delete', { page: { heading: 'Delete Author', details: author.name }, data: { success: true, message: results } });
         }
     }).catch(err => {
-        res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
+        res.render('author-delete', { page: { heading: 'Delete Author' }, data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
     });
 };
 
@@ -155,7 +155,7 @@ exports.deleteAuthor = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('author-delete', { page: 'Delete Author', data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
+        res.render('author-delete', { page: { heading: 'Delete Author' }, data: { success: false, message: 'Unable to load the Delete Author form at this time.' } });
     });
   };
 
@@ -164,13 +164,13 @@ exports.fetchAuthorUpdateForm = (req, res, next) => {
     Author.findById(req.params.id).then(data => {
 
         if (data === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
-            res.render('author-form', { page: { heading: 'Edit Author', details: data.name }, data: { success: true, message: data }, errorMessage: null });
+            res.render('author-form', { page: { heading: 'Edit Author', details: data.name }, data: { success: true, message: data } });
         }
     }).catch(err => {
-        res.render('author-form', { page: 'Edit Author', data: { success: false, message: 'Unable to load the Edit Author form at this time.' }, errorMessage: null });
+        res.render('author-form', { page: { heading: 'Edit Author' }, data: { success: false, message: 'Unable to load the Edit Author form at this time.' } });
     });
 };
 
@@ -204,6 +204,6 @@ exports.updateAuthor = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('author-form', { page: 'Edit Author', data: { success: false, message: 'Unable to edit this author at this time.' }, errorMessage: null });
+        res.render('author-form', { page: { heading: 'Edit Author' }, data: { success: false, message: 'Unable to edit this author at this time.' } });
     });
 };

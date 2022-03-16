@@ -24,9 +24,9 @@ function validateForm(formData, dueBackDate) {
 // Displays list of all the book copies in the catalog
 exports.fetchBookCopyList = (req, res, next) => {
     BookCopy.find().populate('book').then(data => {
-        res.render('book-copy-list', { page: 'All Book Copies', data: { success: true, message: data } })
+        res.render('book-copy-list', { page: { heading: 'All Book Copies' }, data: { success: true, message: data } })
     }).catch(err => {
-        res.render('book-copy-list', { page: 'All Book Copies', data: { success: false, message: 'Unable to load the library catalog\'s book copies list at this time.' } })
+        res.render('book-copy-list', { page: { heading: 'All Book Copies' }, data: { success: false, message: 'Unable to load the library catalog\'s book copies list at this time.' } })
     });
 };
 
@@ -35,7 +35,7 @@ exports.fetchBookCopyDetail = (req, res, next) => {
     BookCopy.findById(req.params.id).populate('book').then(data => {
 
         if (data === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('book-copy-detail', { page: { heading: 'Book Copy ID', details: data._id }, data: { success: true, message: data } });
@@ -49,12 +49,11 @@ exports.fetchBookCopyDetail = (req, res, next) => {
 exports.fetchBookCopyCreateForm = (req, res, next) => {
     Book.find({}, 'title isbn').then(data => {
         const results = {
-            books: data,
-            bookCopy: null
+            books: data
         };
-        res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: true, message: results }, errorMessage: null });
+        res.render('book-copy-form', { page: { heading: 'Add New Book Copy' }, data: { success: true, message: results } });
     }).catch(err => {
-        res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: false, message: 'Unable to load the Add New Book Copy form at this time.' }, errorMessage: null });
+        res.render('book-copy-form', { page: { heading: 'Add New Book Copy' }, data: { success: false, message: 'Unable to load the Add New Book Copy form at this time.' } });
     });
 };
 
@@ -74,17 +73,17 @@ exports.createNewBookCopy = (req, res, next) => {
         };
 
         if (validateForm(bookCopy, req.body.dueBack.trim())) {
-            res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: true, message: results }, errorMessage: validateForm(bookCopy, req.body.dueBack.trim()) });
+            res.render('book-copy-form', { page: { heading: 'Add New Book Copy' }, data: { success: true, message: results }, errorMessage: validateForm(bookCopy, req.body.dueBack.trim()) });
         }
         else {
             bookCopy.save().then(data => {
                 res.redirect(bookCopy.url);
             }).catch(err => {
-                res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: true, message: results }, errorMessage: 'Something went wrong. A form value might have been entered incorrectly. Please try again.' });
+                res.render('book-copy-form', { page: { heading: 'Add New Book Copy' }, data: { success: true, message: results }, errorMessage: 'Something went wrong. A form value might have been entered incorrectly. Please try again.' });
             });
         }
     }).catch(err => {
-        res.render('book-copy-form', { page: 'Add New Book Copy', data: { success: false, message: 'Unable to add a new book copy at this time.' }, errorMessage: null });
+        res.render('book-copy-form', { page: { heading: 'Add New Book Copy' }, data: { success: false, message: 'Unable to add a new book copy at this time.' } });
     });
 };
 
@@ -93,13 +92,13 @@ exports.fetchBookCopyDeleteForm = (req, res, next) => {
     BookCopy.findById(req.params.id).then(data => {
   
         if (data === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('book-copy-delete', { page: { heading: 'Delete Book Copy', details: data._id }, data: { success: true, message: data } });
         }
     }).catch(err => {
-        res.render('book-copy-delete', { page: 'Delete Book Copy', data: { success: false, message: 'Unable to load the Delete Book Copy form at this time.' } });
+        res.render('book-copy-delete', { page: { heading: 'Delete Book Copy' }, data: { success: false, message: 'Unable to load the Delete Book Copy form at this time.' } });
     });
   };
   
@@ -127,13 +126,13 @@ exports.fetchBookCopyUpdateForm = (req, res, next) => {
         };
 
         if (bookCopy === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
-            res.render('book-copy-form', { page: { heading: 'Edit Book Copy', details: bookCopy._id }, data: { success: true, message: results }, errorMessage: null });
+            res.render('book-copy-form', { page: { heading: 'Edit Book Copy', details: bookCopy._id }, data: { success: true, message: results } });
         }
     }).catch(err => {
-        res.render('book-copy-form', { page: 'Edit Book Copy', data: { success: false, message: 'Unable to load the Edit Book Copy form at this time.' }, errorMessage: null });
+        res.render('book-copy-form', { page: { heading: 'Edit Book Copy' }, data: { success: false, message: 'Unable to load the Edit Book Copy form at this time.' } });
     });
 };
 
@@ -171,6 +170,6 @@ exports.updateBookCopy = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('book-copy-form', { page: 'Edit Book Copy', data: { success: false, message: 'Unable to edit this book copy at this time.' }, errorMessage: null });
+        res.render('book-copy-form', { page: { heading: 'Edit Book Copy' }, data: { success: false, message: 'Unable to edit this book copy at this time.' } });
     });
 };

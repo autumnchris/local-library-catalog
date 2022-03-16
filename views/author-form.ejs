@@ -1,23 +1,23 @@
-<% if (data && !data.success) { %>
+<% if (typeof data !== 'undefined' && !data.success) { %>
   <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
 <% } else { %>
-  <h2><%= page.heading && page.details ? `${page.heading}: ${page.details}` : page %></h2>
+  <h2><%= page.details ? `${page.heading}: ${page.details}` : page.heading %></h2>
   <form method="post" novalidate>
     <div class="form-group">
       <label for="name">Author Name <abbr class="required-field" title="The author's name is required." aria-label="required">*</abbr></label>
-      <input type="text" name="name" value="<%= data ? data.message.name : '' %>" id="name" required />
+      <input type="text" name="name" value="<%= typeof data !== 'undefined' ? data.message.name : '' %>" id="name" required />
     </div>
     <div class="form-group">
       <label for="date-of-birth">Date of Birth</label>
-      <input type="date" name="dateOfBirth" placeholder="YYYY-MM-DD" max="<%= new Date().toISOString().slice(0, 10) %>" value="<%= data && data.message.dateOfBirth ? data.message.dateOfBirthInput : '' %>" id="date-of-birth" />
+      <input type="date" name="dateOfBirth" placeholder="YYYY-MM-DD" max="<%= new Date().toISOString().slice(0, 10) %>" value="<%= typeof data !== 'undefined' && data.message.dateOfBirth ? data.message.dateOfBirthInput : '' %>" id="date-of-birth" />
     </div>
     <div class="form-group">
       <label for="date-of-death">Date of Death</label>
-      <input type="date" name="dateOfDeath" placeholder="YYYY-MM-DD" max="<%= new Date().toISOString().slice(0, 10) %>" value="<%= data && data.message.dateOfDeath ? data.message.dateOfDeathInput : '' %>" id="date-of-death" />
+      <input type="date" name="dateOfDeath" placeholder="YYYY-MM-DD" max="<%= new Date().toISOString().slice(0, 10) %>" value="<%= typeof data !== 'undefined' && data.message.dateOfDeath ? data.message.dateOfDeathInput : '' %>" id="date-of-death" />
     </div>
     <div class="button-group">
       <button type="submit" class="button">Submit</button>
-      <a class="button" href="<%= page.heading && page.details ? data.message.url : '/catalog' %>" target="_self">Cancel</a>
+      <a class="button" href="<%= page.details ? data.message.url : '/catalog' %>" target="_self">Cancel</a>
     </div>
   </form>
   <%- include ('./partials/form-error-message') -%>

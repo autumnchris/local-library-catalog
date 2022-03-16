@@ -29,9 +29,9 @@ exports.fetchGenreList = (req, res, next) => {
             genres,
             books
         };
-        res.render('genre-list', { page: 'All Genres', data: { success: true, message: results } });
+        res.render('genre-list', { page: { heading: 'All Genres' }, data: { success: true, message: results } });
     }).catch(err => {
-        res.render('genre-list', { page: 'All Genres', data: { success: true, message: 'Unable to load the library catalog\'s genre list at this time.' } });
+        res.render('genre-list', { page: { heading: 'All Genres' }, data: { success: true, message: 'Unable to load the library catalog\'s genre list at this time.' } });
     });
 };
 
@@ -52,10 +52,10 @@ exports.fetchGenreDetail = (req, res, next) => {
         };
 
         if (genreDetails === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
-            res.render('genre-detail', { page: {heading: 'Genre', details: genreDetails.name }, data: { success: true, message: results } });
+            res.render('genre-detail', { page: { heading: 'Genre', details: genreDetails.name }, data: { success: true, message: results } });
         }
     }).catch(err => {
         res.render('genre-detail', { data: { success: false, message: 'Unable to load the library catalog\'s details for this genre at this time.' } });
@@ -64,7 +64,7 @@ exports.fetchGenreDetail = (req, res, next) => {
 
 // Displays new genre form
 exports.fetchGenreCreateForm = (req, res, next) => {
-    res.render('genre-form', { page: 'Add New Genre', data: null, errorMessage: null });
+    res.render('genre-form', { page: { heading: 'Add New Genre' } });
 };
 
 // Handles creation of a new genre
@@ -74,7 +74,7 @@ exports.createNewGenre = (req, res, next) => {
     });
     
     if (validateForm(genre)) {
-        res.render('genre-form', { page: 'Add New Genre', data: { success: true, message: genre }, errorMessage: validateForm(genre) });
+        res.render('genre-form', { page: { heading: 'Add New Genre' }, data: { success: true, message: genre }, errorMessage: validateForm(genre) });
     }
     else {
         genre.save().then(data => {
@@ -88,7 +88,7 @@ exports.createNewGenre = (req, res, next) => {
             else {
                 errorMessage = 'Something went wrong. A form value might have been entered incorrectly. Please try again.';
             }
-            res.render('genre-form', { page: 'Add New Genre', data: { success: true, message: genre }, errorMessage });
+            res.render('genre-form', { page: { heading: 'Add New Genre' }, data: { success: true, message: genre }, errorMessage });
         });
     }
 };
@@ -110,13 +110,13 @@ exports.fetchGenreDeleteForm = (req, res, next) => {
         };
   
         if (genre === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('genre-delete', { page: { heading: 'Delete Genre', details: genre.name }, data: { success: true, message: results } });
         }
     }).catch(err => {
-        res.render('genre-delete', { page: 'Delete Genre', data: { success: false, message: 'Unable to load the Delete Genre form at this time.' } });
+        res.render('genre-delete', { page: { heading: 'Delete Genre' }, data: { success: false, message: 'Unable to load the Delete Genre form at this time.' } });
     });
   };
   
@@ -148,7 +148,7 @@ exports.fetchGenreDeleteForm = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('genre-delete', { page: 'Delete Genre', data: { success: false, message: 'Unable to load the Delete Genre form at this time.' } });
+        res.render('genre-delete', { page: { heading: 'Delete Genre' }, data: { success: false, message: 'Unable to load the Delete Genre form at this time.' } });
     });
   };  
 
@@ -157,13 +157,13 @@ exports.fetchGenreUpdateForm = (req, res, next) => {
     Genre.findById(req.params.id).then(data => {
 
         if (data === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
-            res.render('genre-form', { page: { heading: 'Edit Genre', details: data.name }, data: { success: true, message: data }, errorMessage: null });
+            res.render('genre-form', { page: { heading: 'Edit Genre', details: data.name }, data: { success: true, message: data } });
         }
     }).catch(err => {
-        res.render('genre-form', { page: 'Edit Genre', data: { success: false, message: 'Unable to load the Edit Genre form at this time.' }, errorMessage: null });
+        res.render('genre-form', { page: { heading: 'Edit Genre' }, data: { success: false, message: 'Unable to load the Edit Genre form at this time.' } });
     });
 };
 
@@ -195,6 +195,6 @@ exports.updateGenre = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('genre-form', { page: 'Edit Genre', data: { success: false, message: 'Unable to edit this genre at this time.' }, errorMessage: null });
+        res.render('genre-form', { page: { heading: 'Edit Genre' }, data: { success: false, message: 'Unable to edit this genre at this time.' } });
     });
 };

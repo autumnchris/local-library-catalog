@@ -59,9 +59,9 @@ exports.fetchBookList = (req, res, next) => {
     Book.find({}, 'title author').sort({
         title: 'asc'
     }).populate('author').then(data => {
-        res.render('book-list', { page: 'All Books', data: { success: true, message: data } });
+        res.render('book-list', { page: { heading: 'All Books' }, data: { success: true, message: data } });
     }).catch(err => {
-        res.render('book-list', { page: 'All Books', data: { success: false, message: 'Unable to load the library catalog\'s book list at this time.' } });
+        res.render('book-list', { page: { heading: 'All Books' }, data: { success: false, message: 'Unable to load the library catalog\'s book list at this time.' } });
     });
 };
 
@@ -82,7 +82,7 @@ exports.fetchBookDetail = (req, res, next) => {
         };
         
         if (bookDetails === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('book-detail', { page: { heading: 'Book Title', details: bookDetails.title }, data: { success: true, message: results } });
@@ -105,9 +105,9 @@ exports.fetchBookCreateForm = (req, res, next) => {
             authors,
             genres
         };
-        res.render('book-form', { page: 'Add New Book', data: { success: true, message: results }, errorMessage: null });
+        res.render('book-form', { page: { heading: 'Add New Book' }, data: { success: true, message: results } });
     }).catch(err => {
-        res.render('book-form', { page: 'Add New Book', data: { success: false, message: 'Unable to load the Add New Book form at this time.' }, errorMessage: null });
+        res.render('book-form', { page: { heading: 'Add New Book' }, data: { success: false, message: 'Unable to load the Add New Book form at this time.' } });
     });
 };
 
@@ -135,7 +135,7 @@ exports.createNewBook = (req, res, next) => {
         };
         
         if (validateForm(book)) {
-            res.render('book-form', { page: 'Add New Book', data: { success: true, message: results }, errorMessage: validateForm(book) });
+            res.render('book-form', { page: { heading: 'Add New Book' }, data: { success: true, message: results }, errorMessage: validateForm(book) });
         }
         else {
             book.save().then(data => {
@@ -149,11 +149,11 @@ exports.createNewBook = (req, res, next) => {
                 else {
                     errorMessage = 'Something went wrong. A form value might have been entered incorrectly. Please try again.';
                 }
-                res.render('book-form', { page: 'Add New Book', data: { success: true, message: results }, errorMessage });
+                res.render('book-form', { page: { heading: 'Add New Book' }, data: { success: true, message: results }, errorMessage });
             });
         }
     }).catch(err => {
-        res.render('book-form', { page: 'Add New Book', data: { success: false, message: 'Unable to add a new book at this time.' }, errorMessage: null });
+        res.render('book-form', { page: { heading: 'Add New Book' }, data: { success: false, message: 'Unable to add a new book at this time.' } });
     });
 };
 
@@ -174,13 +174,13 @@ exports.fetchBookDeleteForm = (req, res, next) => {
         };
   
         if (book === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
             res.render('book-delete', { page: { heading: 'Delete Book', details: book.title }, data: { success: true, message: results } });
         }
     }).catch(err => {
-        res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
+        res.render('book-delete', { page: { heading: 'Delete Book' }, data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
     });
 };
   
@@ -211,7 +211,7 @@ exports.deleteBook = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('book-delete', { page: 'Delete Book', data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
+        res.render('book-delete', { page: { heading: 'Delete Book' }, data: { success: false, message: 'Unable to load the Delete Book form at this time.' } });
     });
 };
 
@@ -233,13 +233,13 @@ exports.fetchBookUpdateForm = (req, res, next) => {
         };
         
         if (book === null) {
-            res.status(404).render('404', { page: 'Page not found' });
+            res.status(404).render('404', { page: { heading: 'Page not found' } });
         }
         else {
-            res.render('book-form', { page: { heading: 'Edit Book', details: book.title }, data: { success: true, message: results }, errorMessage: null });
+            res.render('book-form', { page: { heading: 'Edit Book', details: book.title }, data: { success: true, message: results } });
         }
     }).catch(err => {
-        res.render('book-form', { page: 'Edit Book', data: { success: false, message: 'Unable to load the Edit Book form at this time.' }, errorMessage: null });
+        res.render('book-form', { page: { heading: 'Edit Book' }, data: { success: false, message: 'Unable to load the Edit Book form at this time.' } });
     });
 };
 
@@ -289,6 +289,6 @@ exports.updateBook = (req, res, next) => {
             });
         }
     }).catch(err => {
-        res.render('book-form', { page: 'Edit Book', data: { success: false, message: 'Unable to edit this book at this time.' }, errorMessage: null });
+        res.render('book-form', { page: { heading: 'Edit Book' }, data: { success: false, message: 'Unable to edit this book at this time.' } });
     });
 };
