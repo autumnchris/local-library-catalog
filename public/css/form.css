@@ -94,6 +94,9 @@ legend {
   border-radius: inherit;
   color: inherit;
   cursor: pointer;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  width: 95%;
 }
 
 .select-wrapper select::-ms-expand {

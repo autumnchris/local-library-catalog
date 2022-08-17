@@ -17,7 +17,7 @@ body {
   min-height: 100%;
   -ms-scroll-chaining: none;
   overscroll-behavior: none;
-  padding-left: 200px;
+  padding-top: 340px;
   position: relative;
 }
 
@@ -111,4 +111,19 @@ hr {
   background: hsl(204deg 100% 95%);
   border: 1px solid hsl(204deg 100% 90%);
   color: hsl(204deg 100% 26%);
+}
+
+@media all and (min-width: 580px) {
+
+  body {
+    padding-top: 100px;
+  }
+}
+
+@media all and (min-width: 700px) {
+
+  body {
+    padding-top: 0;
+    padding-left: 200px;
+  }
 }

@@ -45,6 +45,16 @@ td {
   border-collapse: collapse;
 }
 
+table {
+  border: 0;
+  display: block;
+  max-width: -webkit-min-content;
+  max-width: -moz-min-content;
+  max-width: min-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 table caption {
   padding: 10px;
 }
@@ -78,15 +88,14 @@ table .status.available {
 /* Sidebar styles */
 .sidebar {
   background: hsl(0, 0%, 90%);
-  bottom: 0;
   left: 0;
   position: absolute;
   top: 0;
-  width: 200px;
+  width: 100%;
 }
 
 .sidebar nav {
-  padding: 15px;
+  padding: 10px;
 }
 
 .sidebar nav .catalog-lists,
@@ -94,6 +103,8 @@ table .status.available {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -105,19 +116,23 @@ table .status.available {
 .sidebar nav .catalog-lists a:hover,
 .sidebar nav .catalog-lists a:active,
 .sidebar nav .catalog-lists a:focus {
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   margin: 4px 0;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 160px;
+  text-align: center;
 }
-
 
 .sidebar nav .button,
 .sidebar nav .button:visited,
 .sidebar nav .button:hover,
 .sidebar nav .button:active,
 .sidebar nav .button:focus {
-  width: auto;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  width: 160px;
 }
 
 /* Details */
@@ -165,4 +180,73 @@ table .status.available {
 .detail-card .status.available {
   background: hsl(127deg 69% 95%);
   color: hsl(124deg 70% 26%);
+}
+
+@media all and (min-width: 580px) {
+
+  .sidebar nav .catalog-lists,
+  .sidebar nav .catalog-create-buttons {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .sidebar nav .catalog-lists a,
+  .sidebar nav .catalog-lists a:visited,
+  .sidebar nav .catalog-lists a:hover,
+  .sidebar nav .catalog-lists a:active,
+  .sidebar nav .catalog-lists a:focus {
+    margin: 0 12px;
+    width: auto;
+  }
+
+  .sidebar nav .button,
+  .sidebar nav .button:visited,
+  .sidebar nav .button:hover,
+  .sidebar nav .button:active,
+  .sidebar nav .button:focus {
+    width: auto;
+  }
+}
+
+@media all and (min-width: 700px) {
+
+  .sidebar {
+    background: hsl(0, 0%, 90%);
+    bottom: 0;
+    width: 200px;
+  }
+
+  .sidebar nav {
+    padding: 15px;
+  }
+
+  .sidebar nav .catalog-lists,
+  .sidebar nav .catalog-create-buttons {
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .sidebar nav .catalog-lists a,
+  .sidebar nav .catalog-lists a:visited,
+  .sidebar nav .catalog-lists a:hover,
+  .sidebar nav .catalog-lists a:active,
+  .sidebar nav .catalog-lists a:focus {
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    margin: 4px 10px;
+  }
+
+  .sidebar nav .button,
+  .sidebar nav .button:visited,
+  .sidebar nav .button:hover,
+  .sidebar nav .button:active,
+  .sidebar nav .button:focus {
+    width: 160px;
+  }
 }
