@@ -1,9 +1,9 @@
 <h2><%= page.heading %></h2>
 <% if (!data.success) { %>
-  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
 <% } else { %> 
   <% if (data.message.length === 0) { %>
-    <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> There are currently no books in the library's catalog at this time.</p>
+    <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> There are currently no books in the library's catalog at this time.</p>
   <% } else { %>  
     <table>
       <thead>

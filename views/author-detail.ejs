@@ -1,5 +1,5 @@
 <% if (!data.success) { %>
-  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw"></span> <%= data.message %></p>
+  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
 <% } else { %>  
   <h2><%= page.heading %>: <%= page.details %></h2>
   <section class="details-container">
@@ -16,7 +16,7 @@
   <section>
     <h3>Books by this Author</h3>
     <% if (data.message.booksWithAuthor.length === 0) { %>
-      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw"></span> This author currently has no books in the catalog.</p>
+      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> This author currently has no books in the catalog.</p>
     <% } else { %>
       <% data.message.booksWithAuthor.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
         <div class="detail-card">
