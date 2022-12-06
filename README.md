@@ -21,7 +21,7 @@ Inspired by the [Express 105: Forms and Deployment assignment](https://www.theod
 
 ## Demo
 
-View project demo at [https://autumnchris-library-catalog.herokuapp.com/catalog](https://autumnchris-library-catalog.herokuapp.com/catalog).
+View project demo at [https://autumnchris-local-library-catalog.onrender.com/catalog](https://autumnchris-local-library-catalog.onrender.com/catalog).
 
 ## Instructions
 
