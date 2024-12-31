@@ -15,6 +15,9 @@ const AuthorSchema = new Schema({
     dateOfDeath: {
     type: Date
   }
+},
+{
+  strictQuery: true
 });
 
 // Virtual for a formatted version of the author's date of birth

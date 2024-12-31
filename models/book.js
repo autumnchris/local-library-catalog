@@ -24,6 +24,9 @@ const BookSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Genre'
   }]
+},
+{
+  strictQuery: true
 });
 
 // Virtual for book's URL

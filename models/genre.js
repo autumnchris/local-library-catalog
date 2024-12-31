@@ -8,6 +8,9 @@ const GenreSchema = new Schema({
     maxLength: [100, 'The genre name must be no more than 100 characters.'],
     unique: true
   }
+},
+{
+  strictQuery: true
 });
 
 // Virtual for genre's URL

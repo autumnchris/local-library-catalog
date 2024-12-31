@@ -26,6 +26,9 @@ const BookCopySchema = new Schema({
   dueBack: {
     type: Date
   }
+},
+{
+  strictQuery: true
 });
 
 // Virtual for a formatted version of the book copy's due back date
