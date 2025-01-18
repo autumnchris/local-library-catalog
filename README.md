@@ -6,9 +6,12 @@ An Express.js app that adds, deletes, edits, and displays library catalog inform
 
 ## Built With
 * [Express.js](https://expressjs.com)
+* [Node.js](https://nodejs.org/en)
+* JavaScript
 * [Mongoose](https://mongoosejs.com)
 * [MongoDB](https://www.mongodb.com)
 * CSS3
+* HTML5
 * [EJS](https://ejs.co)
 * [validator.js](https://github.com/validatorjs/validator.js)
 * [Moment.js](https://momentjs.com)
