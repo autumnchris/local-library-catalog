@@ -31,6 +31,11 @@ After forking and cloning, navigate to the repository in your command line and i
 npm install
 ```
 
+Create a `.env` file in the root of the repository and add the following variables:
+```
+MONGO_URI=<your-mongodb-uri>
+```
+
 Run the following script in your command line if starting the repository in development mode:
 ```
 npm run dev
