@@ -6,7 +6,7 @@
     <div class="form-group">
       <label for="book">Book <abbr class="required-field" title="The book copy's associated book is required." aria-label="required">*</abbr></label>
       <div class="select-wrapper">
-        <select name="book" id="book" required>
+        <select name="book" id="book" autocomplete="off" required>
           <option value="placeholder" disabled selected>Please select the book copy's associated book</option>
           <% data.message.books.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => {
             const selected = data.message.bookCopy && data.message.bookCopy.book && data.message.bookCopy.book._id.toString() === book._id.toString() ? 'selected' : '';
@@ -17,12 +17,12 @@
     </div>
     <div class="form-group">
       <label for="publisher">Publisher <abbr class="required-field" title="The book copy's publisher is required." aria-label="required">*</abbr></label>
-      <input type="text" name="publisher" value="<%= data.message.bookCopy ? data.message.bookCopy.publisher : '' %>" id="publisher" required />
+      <input type="text" name="publisher" value="<%= data.message.bookCopy ? data.message.bookCopy.publisher : '' %>" id="publisher" autocomplete="off" required />
     </div>
     <div class="form-group">
       <label for="status">Status <abbr class="required-field" title="The book copy's status is required." aria-label="required">*</abbr></label>
       <div class="select-wrapper">
-        <select name="status" id="status" required>
+        <select name="status" id="status" autocomplete="off" required>
           <% const statusOptions = ['Available', 'Reserved', 'Loaned', 'Maintenance'];
           statusOptions.forEach(statusOption => {
             const selected = (!data.message.bookCopy && statusOption === 'Maintenance') || (data.message.bookCopy && data.message.bookCopy.status && data.message.bookCopy.status === statusOption) ? 'selected' : ''; %>
@@ -33,7 +33,7 @@
     </div>
     <div class="form-group">
       <label for="due-back">Due Back (leave empty if Status is not set to Loaned)</label>
-      <input type="date" name="dueBack" placeholder="YYYY-MM-DD" value="<%= data.message.bookCopy && data.message.bookCopy.dueBack ? data.message.bookCopy.dueBackInput : '' %>" id="due-back" />
+      <input type="date" name="dueBack" placeholder="YYYY-MM-DD" value="<%= data.message.bookCopy && data.message.bookCopy.dueBack ? data.message.bookCopy.dueBackInput : '' %>" id="due-back" autocomplete="off" />
     </div>
     <div class="button-group">
       <button type="submit" class="button">Submit</button>

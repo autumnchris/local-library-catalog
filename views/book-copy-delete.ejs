@@ -4,7 +4,7 @@
   <h2><%= page.heading %>: <%= page.details %></h2>
   <p class="message warning-message"><span class="fa fa-exclamation-triangle fa-lg fa-fw" aria-hidden="true"></span> Are you sure you want to delete this book copy?</p>
   <form method="post" novalidate>
-    <input type="hidden" name="bookCopyID" value="<%= data.message._id %>" id="book-copy-id" required />
+    <input type="hidden" name="bookCopyID" value="<%= data.message._id %>" id="book-copy-id" autocomplete="off" required />
     <div class="button-group">
       <button type="submit" class="button">Yes, Delete this book copy</button>
       <a class="button" href="<%= data.message.url %>" target="_self">Cancel</a>

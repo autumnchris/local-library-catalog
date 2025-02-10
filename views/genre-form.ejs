@@ -5,7 +5,7 @@
   <form method="post" novalidate>
     <div class="form-group">
       <label for="name">Genre Name <abbr class="required-field" title="The genre name is required." aria-label="required">*</abbr></label>
-      <input type="text" name="name" placeholder="e.g. Fantasy" value="<%= typeof data !== 'undefined' ? data.message.name : '' %>" id="name" required />
+      <input type="text" name="name" placeholder="e.g. Fantasy" value="<%= typeof data !== 'undefined' ? data.message.name : '' %>" id="name" autocomplete="off" required />
     </div>
     <div class="button-group">
       <button type="submit" class="button">Submit</button>

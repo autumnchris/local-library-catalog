@@ -5,12 +5,12 @@
   <form method="post" novalidate>
     <div class="form-group">
       <label for="title">Title <abbr class="required-field" title="The book title is required." aria-label="required">*</abbr></label>
-      <input type="text" name="title" value="<%= data.message.book ? data.message.book.title : '' %>" id="title" required />
+      <input type="text" name="title" value="<%= data.message.book ? data.message.book.title : '' %>" id="title" autocomplete="off" required />
     </div>
     <div class="form-group">
       <label for="author">Author <abbr class="required-field" title="The book's author is required." aria-label="required">*</abbr></label>
       <div class="select-wrapper">
-        <select name="author" id="author" required>
+        <select name="author" id="author" autocomplete="off" required>
           <option value="placeholder" disabled selected>Please select the book's author</option>
           <% data.message.authors.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())).forEach(author => {
             const selected = data.message.book && data.message.book.author && data.message.book.author._id.toString() === author._id.toString() ? 'selected' : '';
@@ -21,11 +21,11 @@
     </div>
     <div class="form-group">
       <label for="isbn">ISBN <abbr class="required-field" title="The ISBN number is required." aria-label="required">*</abbr></label>
-      <input type="text" name="isbn" value="<%= data.message.book ? data.message.book.isbn : '' %>" inputmode="numeric" id="isbn" required />
+      <input type="text" name="isbn" value="<%= data.message.book ? data.message.book.isbn : '' %>" inputmode="numeric" id="isbn" autocomplete="off" required />
     </div>
     <div class="form-group">
       <label for="summary">Summary <abbr class="required-field" title="The book's summary is required." aria-label="required">*</abbr></label>
-      <textarea name="summary" rows="8" id="summary" required><%= data.message.book ? data.message.book.summary : '' %></textarea>
+      <textarea name="summary" rows="8" id="summary" autocomplete="off" required><%= data.message.book ? data.message.book.summary : '' %></textarea>
     </div>
     <div class="form-group">
       <fieldset>
@@ -33,7 +33,7 @@
         <% data.message.genres.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())).forEach(genre => {
           const checked = data.message.book && (data.message.book.genre.some(item => item._id.toString() === genre._id.toString()) || data.message.book.genre.includes(genre._id)) ? 'checked' : '';
           %><label class="check-label" for="genre-<%= genre._id%>" /><%= genre.name %>
-            <input type="checkbox" name="genre" value="<%= genre._id %>" tabindex="-1" id="genre-<%= genre._id %>" <%= checked %> />
+            <input type="checkbox" name="genre" value="<%= genre._id %>" tabindex="-1" id="genre-<%= genre._id %>" autocomplete="off" <%= checked %> />
             <span class="checkmark checkbox" tabindex="0"></span>
           </label>
         <% }) %>

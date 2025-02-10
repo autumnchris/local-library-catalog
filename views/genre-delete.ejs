@@ -5,7 +5,7 @@
   <% if (data.message.booksWithGenre.length === 0) { %>
     <p class="message warning-message"><span class="fa fa-exclamation-triangle fa-lg fa-fw" aria-hidden="true"></span> Are you sure you want to delete this genre?</p>
     <form method="post" novalidate>
-      <input type="hidden" name="genreID" value="<%= data.message.genre._id %>" id="genre-id" required />
+      <input type="hidden" name="genreID" value="<%= data.message.genre._id %>" id="genre-id" autocomplete="off" required />
       <div class="button-group">
         <button type="submit" class="button">Yes, Delete this genre</button>
         <a class="button" href="<%= data.message.genre.url %>" target="_self">Cancel</a>
