@@ -1,5 +1,5 @@
 <% if (!data.success) { %>
-  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
+  <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
 <% } else { %>  
   <h2><%= page.heading %>: <cite><%= page.details %></cite></h2>
   <section class="details-container">
@@ -22,7 +22,7 @@
   <section>
     <h3>Book Copies</h3>
     <% if (data.message.bookCopiesWithBook.length === 0) { %>
-      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> This book currently has no book copies in the catalog.</p>
+      <p class="message info-message"><span class="fa-solid fa-circle-info fa-lg fa-fw" aria-hidden="true"></span> This book currently has no book copies in the catalog.</p>
     <% } else { %>
       <% data.message.bookCopiesWithBook.forEach(bookCopy => { %>
         <div class="detail-card">

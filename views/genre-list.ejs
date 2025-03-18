@@ -1,9 +1,9 @@
 <h2><%= page.heading %></h2>
 <% if (!data.success) { %>
-  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
+  <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
 <% } else { %>
   <% if (data.message.genres.length === 0) { %>
-    <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> There are currently no genres in the library's catalog at this time.</p>
+    <p class="message info-message"><span class="fa-solid fa-circle-info fa-lg fa-fw" aria-hidden="true"></span> There are currently no genres in the library's catalog at this time.</p>
   <% } else { %>  
     <table>
       <thead>

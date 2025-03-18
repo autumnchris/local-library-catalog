@@ -1,5 +1,5 @@
 <% if (!data.success) { %>
-  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
+  <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
 <% } else { %>  
   <h2><%= page.heading %>: <%= page.details %></h2>
   <section>
@@ -12,7 +12,7 @@
   <section>
     <h3>Books in this Genre</h3>
     <% if (data.message.booksWithGenre.length === 0) { %>
-      <p class="message info-message"><span class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> This genre currently has no books in the catalog.</p>
+      <p class="message info-message"><span class="fa-solid fa-circle-info fa-lg fa-fw" aria-hidden="true"></span> This genre currently has no books in the catalog.</p>
     <% } else { %>
       <table>
         <thead>

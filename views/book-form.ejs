@@ -1,5 +1,5 @@
 <% if (!data.success) { %>
-  <p class="message error-message"><span class="fa fa-exclamation-circle fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
+  <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> <%= data.message %></p>
 <% } else { %>
   <h2><%- page.details ? `${page.heading}: <cite>${page.details}</cite>` : page.heading %></h2>
   <form method="post" novalidate>
