@@ -76,6 +76,13 @@ legend {
   text-decoration: none;
 }
 
+.button[type=submit],
+.button[type=submit]:hover,
+.button[type=submit]:active,
+.button[type=submit]:focus {
+  font-weight: 400;
+}
+
 /* Select element styles */
 .select-wrapper {
   background: #0569b3;
@@ -104,9 +111,9 @@ legend {
 }
 
 .select-wrapper:after {
-  content: "\f0dc";
+  content: "\f0d7";
   cursor: pointer;
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 6 Free";
   font-weight: 900;
   pointer-events: none;
   position: absolute;

@@ -12,19 +12,15 @@
       </div>
     </form>
   <% } else { %>
-    <section>
-      <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> Delete the following books before attempting to delete this author.</p>
-    </section>
-    <section>
-      <h3>Books by this Author</h3>
-      <% data.message.booksWithAuthor.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
-        <div class="detail-card">
-          <h4>
-            <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
-          </h4>
-          <p><%= book.summary %></p>
-        </div>
-      <% }) %>
-    </section>
+    <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> Delete the following books before attempting to delete this author.</p>
+    <h3>Books by this Author</h3>
+    <% data.message.booksWithAuthor.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
+      <div class="detail-card">
+        <h4>
+          <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
+        </h4>
+        <p><%= book.summary %></p>
+      </div>
+    <% }) %>
   <% } %>
 <% } %>

@@ -8,11 +8,11 @@
       <input type="text" name="name" value="<%= typeof data !== 'undefined' ? data.message.name : '' %>" id="name" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label for="date-of-birth">Date of Birth</label>
+      <label for="date-of-birth">Author Date of Birth</label>
       <input type="date" name="dateOfBirth" placeholder="YYYY-MM-DD" max="<%= new Date().toISOString().slice(0, 10) %>" value="<%= typeof data !== 'undefined' && data.message.dateOfBirth ? data.message.dateOfBirthInput : '' %>" id="date-of-birth" autocomplete="off" />
     </div>
     <div class="form-group">
-      <label for="date-of-death">Date of Death (leave empty if Author is not deceased)</label>
+      <label for="date-of-death">Author Date of Death (leave empty if Author is not deceased)</label>
       <input type="date" name="dateOfDeath" placeholder="YYYY-MM-DD" max="<%= new Date().toISOString().slice(0, 10) %>" value="<%= typeof data !== 'undefined' && data.message.dateOfDeath ? data.message.dateOfDeathInput : '' %>" id="date-of-death" autocomplete="off" />
     </div>
     <div class="button-group">

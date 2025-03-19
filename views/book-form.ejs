@@ -4,11 +4,11 @@
   <h2><%- page.details ? `${page.heading}: <cite>${page.details}</cite>` : page.heading %></h2>
   <form method="post" novalidate>
     <div class="form-group">
-      <label for="title">Title <abbr class="required-field" title="The book title is required." aria-label="required">*</abbr></label>
+      <label for="title">Book Title <abbr class="required-field" title="The book title is required." aria-label="required">*</abbr></label>
       <input type="text" name="title" value="<%= data.message.book ? data.message.book.title : '' %>" id="title" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label for="author">Author <abbr class="required-field" title="The book's author is required." aria-label="required">*</abbr></label>
+      <label for="author">Book Author <abbr class="required-field" title="The book's author is required." aria-label="required">*</abbr></label>
       <div class="select-wrapper">
         <select name="author" id="author" autocomplete="off" required>
           <option value="placeholder" disabled selected>Please select the book's author</option>
@@ -20,16 +20,16 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="isbn">ISBN <abbr class="required-field" title="The ISBN number is required." aria-label="required">*</abbr></label>
+      <label for="isbn">Book ISBN <abbr class="required-field" title="The book's ISBN number is required." aria-label="required">*</abbr></label>
       <input type="text" name="isbn" value="<%= data.message.book ? data.message.book.isbn : '' %>" inputmode="numeric" id="isbn" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label for="summary">Summary <abbr class="required-field" title="The book's summary is required." aria-label="required">*</abbr></label>
+      <label for="summary">Book Summary <abbr class="required-field" title="The book's summary is required." aria-label="required">*</abbr></label>
       <textarea name="summary" rows="8" id="summary" autocomplete="off" required><%= data.message.book ? data.message.book.summary : '' %></textarea>
     </div>
     <div class="form-group">
       <fieldset>
-        <legend>Genre</legend>
+        <legend>Book Genre</legend>
         <% data.message.genres.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())).forEach(genre => {
           const checked = data.message.book && (data.message.book.genre.some(item => item._id.toString() === genre._id.toString()) || data.message.book.genre.includes(genre._id)) ? 'checked' : '';
           %><label class="check-label" for="genre-<%= genre._id%>" /><%= genre.name %>

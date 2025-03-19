@@ -5,8 +5,6 @@
   <section class="details-container">
     <div class="detail-item"><strong>Born:</strong> <%= data.message.authorDetails.dateOfBirthFormatted %></div>
     <div class="detail-item"><strong>Died:</strong> <%= data.message.authorDetails.dateOfDeathFormatted %></div>
-  </section>
-  <section>
     <div class="button-group">
       <a class="button" href="<%= `${data.message.authorDetails.url}/delete` %>" target="_self">Delete Author</a>
       <a class="button" href="<%= `${data.message.authorDetails.url}/update` %>" target="_self">Edit Author</a>

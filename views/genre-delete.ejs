@@ -12,31 +12,27 @@
       </div>
     </form>
   <% } else { %>
-    <section>
-      <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> Delete the following books before attempting to delete this genre.</p>
-    </section>
-    <section>
-      <h3>Books in this Genre</h3>
-      <table>
-        <thead>
+    <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> Delete the following books before attempting to delete this genre.</p>
+    <h3>Books in this Genre</h3>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Book Title</th>
+          <th scope="col">Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.message.booksWithGenre.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
           <tr>
-            <th scope="col">Book Title</th>
-            <th scope="col">Author</th>
+            <td>
+              <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
+            </td>
+            <td>
+              <a href="<%= book.author.url %>" target="_self"><%= book.author.name %></a>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% data.message.booksWithGenre.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => { %>
-            <tr>
-              <td>
-                <a href="<%= book.url %>" target="_self"><cite><%= book.title %></cite></a>
-              </td>
-              <td>
-                <a href="<%= book.author.url %>" target="_self"><%= book.author.name %></a>
-              </td>
-            </tr>
-          <% }) %> 
-        </tbody>
-      </table>
-    </section>
+        <% }) %> 
+      </tbody>
+    </table>
   <% } %>
 <% } %>

@@ -11,8 +11,6 @@
       <a href="<%= genre.url %>" target="_self"><%= genre.name %></a><% if (index < data.message.bookDetails.genre.length - 1) { %>, <% } %>
     <% }) %></div>
   <% } %>
-  </section>
-  <section>
     <div class="button-group">
       <a class="button" href="<%= `${data.message.bookDetails.url}/delete` %>" target="_self">Delete Book</a>
       <a class="button" href="<%= `${data.message.bookDetails.url}/update` %>" target="_self">Edit Book</a>

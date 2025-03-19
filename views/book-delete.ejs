@@ -12,21 +12,17 @@
       </div>
     </form>
   <% } else { %>
-    <section>
-      <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> Delete the following book copies before attempting to delete this book.</p>
-    </section>
-    <section>
-      <h3>Book Copies</h3>
-      <% data.message.bookCopiesWithBook.forEach(bookCopy => { %>
-        <div class="detail-card">
-          <div class="detail-item"><strong>ID:</strong> <a href="<%= bookCopy.url %>" target="_self"><%= bookCopy._id %></a></div>
-          <div class="detail-item"><strong>Status:</strong> <span class="status <%= bookCopy.status.toLowerCase() %>"><%= bookCopy.status %></span></div>
-          <div class="detail-item"><strong>Publisher:</strong> <%= bookCopy.publisher %></div>
-          <% if (bookCopy.status === 'Loaned') { %>
-            <div class="detail-item"><strong>Due Back:</strong> <%= bookCopy.dueBackFormatted %></div>
-          <% } %>
-        </div>
-      <% }) %>
-    </section>
+    <p class="message error-message"><span class="fa-solid fa-circle-exclamation fa-lg fa-fw" aria-hidden="true"></span> Delete the following book copies before attempting to delete this book.</p>
+    <h3>Book Copies</h3>
+    <% data.message.bookCopiesWithBook.forEach(bookCopy => { %>
+      <div class="detail-card">
+        <div class="detail-item"><strong>ID:</strong> <a href="<%= bookCopy.url %>" target="_self"><%= bookCopy._id %></a></div>
+        <div class="detail-item"><strong>Status:</strong> <span class="status <%= bookCopy.status.toLowerCase() %>"><%= bookCopy.status %></span></div>
+        <div class="detail-item"><strong>Publisher:</strong> <%= bookCopy.publisher %></div>
+        <% if (bookCopy.status === 'Loaned') { %>
+          <div class="detail-item"><strong>Due Back:</strong> <%= bookCopy.dueBackFormatted %></div>
+        <% } %>
+      </div>
+    <% }) %>
   <% } %>
 <% } %>

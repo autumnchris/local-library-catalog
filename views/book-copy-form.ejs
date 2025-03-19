@@ -4,10 +4,10 @@
   <h2><%= page.details ? `${page.heading}: ${page.details}` : page.heading %></h2>
   <form method="post" novalidate>
     <div class="form-group">
-      <label for="book">Book <abbr class="required-field" title="The book copy's associated book is required." aria-label="required">*</abbr></label>
+      <label for="book">Book Copy Title <abbr class="required-field" title="The book copy's associated book title is required." aria-label="required">*</abbr></label>
       <div class="select-wrapper">
         <select name="book" id="book" autocomplete="off" required>
-          <option value="placeholder" disabled selected>Please select the book copy's associated book</option>
+          <option value="placeholder" disabled selected>Please select the book copy's associated book title</option>
           <% data.message.books.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())).forEach(book => {
             const selected = data.message.bookCopy && data.message.bookCopy.book && data.message.bookCopy.book._id.toString() === book._id.toString() ? 'selected' : '';
             %><option value="<%= book._id %>" <%= selected %>><%= book.title %> -- ISBN: <%= book.isbn %></option>
@@ -16,11 +16,11 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="publisher">Publisher <abbr class="required-field" title="The book copy's publisher is required." aria-label="required">*</abbr></label>
+      <label for="publisher">Book Copy Publisher <abbr class="required-field" title="The book copy's publisher is required." aria-label="required">*</abbr></label>
       <input type="text" name="publisher" value="<%= data.message.bookCopy ? data.message.bookCopy.publisher : '' %>" id="publisher" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label for="status">Status <abbr class="required-field" title="The book copy's status is required." aria-label="required">*</abbr></label>
+      <label for="status">Book Copy Status <abbr class="required-field" title="The book copy's status is required." aria-label="required">*</abbr></label>
       <div class="select-wrapper">
         <select name="status" id="status" autocomplete="off" required>
           <% const statusOptions = ['Available', 'Reserved', 'Loaned', 'Maintenance'];
