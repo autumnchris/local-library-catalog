@@ -20,5 +20,23 @@
       <%- body %>
     </main>
     <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; <%= new Date().getFullYear(); %></footer>
+    <script>
+      function events() {
+        document.addEventListener('keydown', event => {
+          const element = event.target;
+          element.matches('form fieldset .checkmark') ? handleCheckboxKeyDown(event) : null;
+        });
+      }
+
+      function handleCheckboxKeyDown(event) {
+
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          document.getElementById(event.target.dataset.inputId).checked = !document.getElementById(event.target.dataset.inputId).checked;
+        }
+      }
+
+      events();
+    </script>
   </body>
 </html>

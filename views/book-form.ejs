@@ -34,7 +34,7 @@
           const checked = data.message.book && (data.message.book.genre.some(item => item._id.toString() === genre._id.toString()) || data.message.book.genre.includes(genre._id)) ? 'checked' : '';
           %><label class="check-label" for="genre-<%= genre._id%>" /><%= genre.name %>
             <input type="checkbox" name="genre" value="<%= genre._id %>" tabindex="-1" id="genre-<%= genre._id %>" autocomplete="off" <%= checked %> />
-            <span class="checkmark checkbox" tabindex="0"></span>
+            <span class="checkmark checkbox" tabindex="0" data-input-id="genre-<%= genre._id %>"></span>
           </label>
         <% }) %>
       </fieldset>
